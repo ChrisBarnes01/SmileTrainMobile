@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".CameraActivity4">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryBlue"
+        android:text="Time To Take Pictures"
+        android:textSize="35sp"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/startingTextSubtitle"
+        app:layout_constraintEnd_toEndOf="@+id/mainViewPager"
+        app:layout_constraintStart_toStartOf="@+id/mainViewPager"
+        android:id="@+id/startingTextMain"/>
+
+    <TextView
+        android:id="@+id/startingTextSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:layout_marginBottom="70dp"
+        android:text="Lets get started"
+        app:layout_constraintBottom_toTopOf="@+id/startingImage"
+        app:layout_constraintEnd_toEndOf="@+id/mainViewPager"
+        app:layout_constraintStart_toStartOf="@+id/mainViewPager" />
+
+    <ImageView
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:id="@+id/startingImage"
+        android:layout_width="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trianles"
+        app:layout_constraintBottom_toBottomOf="@+id/mainViewPager"
+        app:layout_constraintEnd_toEndOf="@+id/mainViewPager"
+        app:layout_constraintStart_toStartOf="@+id/mainViewPager"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonStartAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="15dp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/mainViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="75dp" />
+
+    <LinearLayout
+        android:id="@+id/startedMainIndicators"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/buttonStartAction"
+        app:layout_constraintEnd_toStartOf="@id/buttonStartAction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonStartAction"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

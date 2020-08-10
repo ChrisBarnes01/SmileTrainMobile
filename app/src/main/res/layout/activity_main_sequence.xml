@@ -23,7 +23,9 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/mainViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="30dp" />
 
     <LinearLayout
         android:id="@+id/layoutMainIndicators"
@@ -33,9 +35,9 @@
         android:layout_marginEnd="20dp"
         android:orientation="horizontal"
         android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="@id/buttonMainAction"
+        app:layout_constraintBottom_toBottomOf="@+id/mainViewPager"
         app:layout_constraintEnd_toStartOf="@id/buttonMainAction"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/buttonMainAction"/>
+        app:layout_constraintTop_toTopOf="@id/buttonMainAction" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
