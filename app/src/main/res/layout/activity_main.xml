@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryBlue"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+
+            <TextView
+                android:id="@+id/mainText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:text="Welcome"/>
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_below="@id/mainText"
+                android:id="@+id/subtitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="34sp"
+                android:textColor="@color/colorBackground"
+                android:text="Chris Barnes"/>
+
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:src="@drawable/chris" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:textSize="22sp"
+            android:text="How are you today?"
+            />
+
+        <RatingBar
+            android:layout_width="264dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/ratingBarLink"
+            android:clickable="true"
+            android:numStars="5"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:textSize="22sp"
+            android:text="Other Activities"
+            />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:padding="14dp"
+            android:alignmentMode="alignBounds"
+            android:columnOrderPreserved="true"
+            android:layout_height="wrap_content">
+            <!-- Row 1 -->
+
+            <!-- Column 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/camera_flow"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                android:clickable="true"
+                android:layout_columnWeight="0"
+                android:layout_rowWeight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <!--ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/pokemonollymoss" /-->
+
+                    <TextView
+                        android:id="@+id/frstText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Camera Sequence"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/camera"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:clickable="true"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                android:layout_columnWeight="0"
+                android:layout_rowWeight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <!--ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/trianles" /-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Camera"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:padding="14dp"
+            android:alignmentMode="alignBounds"
+            android:columnOrderPreserved="true"
+            android:layout_height="wrap_content">
+            <!-- Row 1 -->
+
+            <!-- Column 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/camera_flow"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                android:clickable="true"
+                android:layout_columnWeight="0"
+                android:layout_rowWeight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <!--ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/pokemonollymoss" /-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calendar"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/introduction"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:clickable="true"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                android:layout_columnWeight="0"
+                android:layout_rowWeight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <!--ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/trianles" /-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rewatch Introduction"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </GridLayout>
+
+
+
+
+        <!--
+        <GridLayout
+            android:id="@+id/mainGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:alignmentMode="alignBounds"
+            android:columnCount="3"
+            android:columnOrderPreserved="true"
+            android:rowCount="1">
+
+
+
+        </GridLayout-->
+        
+
+    </LinearLayout>
+
+</ScrollView>
