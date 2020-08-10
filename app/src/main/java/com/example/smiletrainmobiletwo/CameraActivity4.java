@@ -6,41 +6,120 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class CameraActivity4 extends AppCompatActivity {
+import java.io.IOException;
+import java.util.ArrayList;
 
+public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.Callback{
+
+    //Interface Overlay
     ImageView imageView;
+    Button btnCamera;
+
+    //Camera Overlay
+    private Camera mCamera;
+    private SurfaceView surfaceView;
+    private SurfaceHolder surfaceHolder;
+    private Button capture_image;
+    private byte[] currentPicture;
+    private ArrayList<Bitmap> imageCollection;
+    private ArrayList<OnboardingItem> idealPictures;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        idealPictures = new ArrayList<>();
+
+
+        //Starting Content Interface View
+        startInterface();
+
+    }
+
+
+
+    private void setupPictures(){
+        OnboardingItem item1 = new OnboardingItem();
+        item1.setTitle("Para poder tomar fotos alineadas");
+        item1.setDescription("Agarra el cellular a la altura de su cara");
+        item1.setImage(R.drawable.main5);
+
+
+
+        idealPictures.add(item1);
+    }
+
+
+
+
+
+
+    private void startInterface(){
         setContentView(R.layout.activity_camera4);
 
-        Button btnCamera = (Button)findViewById(R.id.btnCamera);
+        //Initialize the Interface Variables & Listeners
+        btnCamera = (Button)findViewById(R.id.btnCamera);
         imageView = (ImageView)findViewById(R.id.imageView);
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                //intent.putExtra("Interestubf Sting", R.drawable.icefish3);
-                //startActivityForResult(intent, 0);
-
-                Intent intent = new Intent(getApplicationContext(), Camera_Capture.class);
-                startActivityForResult(intent, 0);
+                startCamera();
             }
         });
+    }
 
+    private void startCamera(){
+        setContentView(R.layout.activity_camera__capture);
+        //Initialize the Camera Variables & Listeners
+        surfaceView = (SurfaceView) findViewById(R.id.surfaceview);
+        capture_image = (Button) findViewById(R.id.capture_image);
+        capture_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                capture();
+            }
+        });
+        surfaceHolder = surfaceView.getHolder();
+        surfaceHolder.addCallback(CameraActivity4.this);
+        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        try {
+            mCamera = Camera.open();
+            mCamera.setPreviewDisplay(surfaceHolder);
+            mCamera.startPreview();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
+    protected void setNewImage(){
+        Bitmap bitmap = BitmapFactory.decodeByteArray(currentPicture, 0, currentPicture.length);
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
+        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+        imageView.setImageBitmap(rotatedBitmap);
+        bitmap.recycle();
+        scaledBitmap.recycle();
+
+
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -54,23 +133,73 @@ public class CameraActivity4 extends AppCompatActivity {
     }
 
 
+    ///////CAMERA ORIGINS////////////
+    private void capture() {
+        mCamera.takePicture(null, null, null, new Camera.PictureCallback() {
 
-    //back key on phone pressed
+            @Override
+            public void onPictureTaken(byte[] data, Camera camera) {
+                Toast.makeText(getApplicationContext(), "Picture Taken",
+                        Toast.LENGTH_SHORT).show();
+
+                //Intent intent = new Intent(getApplicationContext(), CameraActivity4.class);
+                //intent.putExtra("image_arr", data);
+                //setResult(RESULT_OK, intent);
+
+                currentPicture = data;
+                if (camera != null){
+                    camera.release();
+                    mCamera = null;
+                }
+                startInterface();
+                setNewImage();
+                /*
+                camera.stopPreview();
+                if (camera != null) {
+                    camera.release();
+                    mCamera = null;
+                }
+                Toast.makeText(getApplicationContext(), "Picture Complete",
+                        Toast.LENGTH_SHORT).show();
+                //startActivity(intent);
+*/
+
+            }
+        });
+    }
+
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                Toast.makeText(getApplicationContext(),"back button overwritteb", Toast.LENGTH_SHORT).show();
-                //Intent i= new Intent(CameraActivity4.this, CameraActivity4.class);
-                //startActivity(i);
-                //this.finish();
+    public void surfaceChanged(SurfaceHolder holder, int format, int width,
+                               int height) {
+        Log.e("Surface Changed", "format   ==   " + format + ",   width  ===  "
+                + width + ", height   ===    " + height);
+        mCamera.setDisplayOrientation(90);
 
-                break;
-
-            default:
-                break;
+        try {
+            mCamera.setPreviewDisplay(holder);
+            mCamera.startPreview();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        Log.e("Surface Created", "");
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        Log.e("Surface Destroyed", "");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.release();
+        }
     }
 
 
