@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".Camera_Capture"> >
+    tools:context=".CameraActivity4"> >
 
     <SurfaceView
         android:id="@+id/surfaceview"

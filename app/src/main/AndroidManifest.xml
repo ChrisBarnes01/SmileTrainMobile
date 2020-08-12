@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
+        android:hardwareAccelerated="false"
         android:theme="@style/AppTheme">
 
         <activity android:name="com.aletify.smiletrainmobiletwo.LoginActivity2"></activity>
@@ -18,15 +19,6 @@
             android:label="@string/title_activity_main_sequence"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.aletify.smiletrainmobiletwo.CameraActivity2"
-            android:label="@string/title_activity_camera2"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- android:screenOrientation="portrait" -->
-        <activity
-            android:name="com.aletify.smiletrainmobiletwo.MainFlowActivity"
-            android:label="@string/title_activity_main_flow"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name="com.aletify.smiletrainmobiletwo.CheckIn"
             android:label="@string/title_activity_check_in"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -34,7 +26,6 @@
             android:name="com.aletify.smiletrainmobiletwo.IntroductorySequence"
             android:label="@string/title_activity_introductory_sequence"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.aletify.smiletrainmobiletwo.MainActivity2" />
         <activity
             android:name="com.aletify.smiletrainmobiletwo.MainActivity"
             android:label="@string/app_name"
