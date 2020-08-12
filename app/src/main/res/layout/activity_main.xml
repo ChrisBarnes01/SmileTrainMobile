@@ -36,14 +36,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="34sp"
                 android:textColor="@color/colorBackground"
-                android:text="Chris Barnes"/>
+                android:text="User Name"/>
 
 
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_width="62dp"
                 android:layout_height="62dp"
-                android:src="@drawable/chris" />
+                android:id="@+id/userProfilePic"
+                android:src="@drawable/camera_capture" />
         </RelativeLayout>
 
 

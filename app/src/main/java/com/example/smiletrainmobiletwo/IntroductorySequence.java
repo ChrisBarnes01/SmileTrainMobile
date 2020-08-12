@@ -60,7 +60,7 @@ public class IntroductorySequence extends AppCompatActivity {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
                     finish();
                 }
 
@@ -73,29 +73,17 @@ public class IntroductorySequence extends AppCompatActivity {
         List<OnboardingItem> onboardingItems = new ArrayList<>();
 
         OnboardingItem page1 = new OnboardingItem();
-        page1.setTitle("Hello Title!!!");
-        page1.setDescription("Well, yep this is it");
-        page1.setImage(R.drawable.pokemonollymoss);
+        page1.setTitle("Welcome to Aletify.");
+        page1.setDescription("We're here to help you manage your dental health.");
+        page1.setImage(R.drawable.hello);
 
         OnboardingItem page2 = new OnboardingItem();
-        page2.setTitle("Hello Again Title!!!");
-        page2.setDescription("Well, yep too this is it");
-        page2.setImage(R.drawable.trianles);
-
-        OnboardingItem page3 = new OnboardingItem();
-        page3.setTitle("Hello The Third!!!");
-        page3.setDescription("Well, I can do this!!!");
-        page3.setImage(R.drawable.icefish3);
-
-        OnboardingItem page4 = new OnboardingItem();
-        page4.setTitle("Hello Again Again Title!!!");
-        page4.setDescription("Number 4");
-        page4.setImage(R.drawable.trianles);
+        page2.setTitle("This app is an early stage demo.");
+        page2.setDescription("But, we're working to get the final version out to you.");
+        page2.setImage(R.drawable.construction);
 
         onboardingItems.add(page1);
         onboardingItems.add(page2);
-        onboardingItems.add(page3);
-        onboardingItems.add(page4);
 
         onboardingAdapter = new OnboardingAdapter(onboardingItems);
 

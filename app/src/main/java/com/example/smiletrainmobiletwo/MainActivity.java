@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +54,25 @@ public class MainActivity extends AppCompatActivity {
         final CardView cameraFlow = findViewById(R.id.camera_flow);
         final RatingBar ratingLink = findViewById(R.id.ratingBarLink);
         final CardView seeIntroduction = findViewById(R.id.introduction);
+
+
+        //Set the Main Customized Titles
+        String username = prefs.getString("firstName", "user")+ " " + prefs.getString("lastName", "name");
+        String profilePicUrl = prefs.getString("profilePic", "");
+
+        if (username == " "){
+            username = "Undefined User";
+        }
+        TextView subtitleText = findViewById(R.id.subtitleText);
+        subtitleText.setText(username);
+        String urlImage = prefs.getString("profilePic", "");
+
+        ImageView userProfile = findViewById(R.id.userProfilePic);
+        //Toast.makeText(getApplicationContext(), urlImage, Toast.LENGTH_SHORT).show();
+        Bitmap myBitmap = BitmapFactory.decodeFile(urlImage);
+        userProfile.setImageBitmap(myBitmap);
+        
+
 
 
 
@@ -105,9 +128,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
         //Also, used SharedPreferences to do login flow!!
+
 
     }
 

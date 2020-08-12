@@ -58,7 +58,7 @@ public class MainSequence extends AppCompatActivity {
                     mainViewPager.setCurrentItem(mainViewPager.getCurrentItem() + 1);
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), CameraActivity4.class));
                     finish();
                 }
 

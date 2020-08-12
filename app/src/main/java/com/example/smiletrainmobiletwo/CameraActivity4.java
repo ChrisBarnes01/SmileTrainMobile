@@ -1,15 +1,20 @@
 package com.example.smiletrainmobiletwo;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -60,6 +65,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         idealPictures = new ArrayList<>();
+        imageCollection = new ArrayList<>();
 
         //Starting Content Interface View
         //startInterface();
@@ -114,6 +120,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         startingSubtitle = findViewById(R.id.startingTextSubtitle);
         idealImageView = findViewById(R.id.startingImage);
 
+        idealImageView.setImageResource(R.drawable.camera_capture);
         buttonStartAction = findViewById(R.id.buttonStartAction);
         buttonStartAction.setText("Next");
         buttonStartAction.setOnClickListener(new View.OnClickListener() {
@@ -128,22 +135,132 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
     }
 
+    @Override
+    public void onBackPressed() {
+        final String[] options = {"Yes", "No"};
 
-    private void showIdealImage(){
-        OnboardingItem nextImage = idealPictures.get(indexOfPictures);
-        startingTitle.setText(nextImage.getTitle());
-        startingSubtitle.setText("");
-        idealImageView.setImageResource(nextImage.getImage());
-
-
-        buttonStartAction.setText("Take Photo");
-        buttonStartAction.setOnClickListener(new View.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Go back to Main Menu?");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                startCamera();
+            public void onClick(DialogInterface dialog, int which) {
+                if (options[which].equals("Yes")) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+
+                } else if (options[which].equals("No")) {
+                    dialog.dismiss();
+                }
             }
         });
+        builder.show();
+    }
 
+    private void showIdealImage(){
+        if (indexOfPictures < idealPictures.size()){
+            OnboardingItem nextImage = idealPictures.get(indexOfPictures);
+            startingTitle.setText(nextImage.getTitle());
+            startingSubtitle.setText("");
+            idealImageView.setImageResource(nextImage.getImage());
+
+
+            buttonStartAction.setText("Take Photo");
+            buttonStartAction.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startCamera();
+                }
+            });
+        }
+        else{
+            startingTitle.setText("We're done!");
+            startingSubtitle.setText("Now, you can submit your images to you doctor via WhatsApp");
+            buttonStartAction.setText("Submit to WhatsApp");
+            buttonStartAction.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openwhatsapp("Hello We are getting sent");
+                }
+            });
+        }
+
+
+    }
+
+    protected void openwhatsapp(String message){
+
+
+        /*
+        PackageManager pm=getPackageManager();
+        try {
+
+            Intent waIntent = new Intent(Intent.ACTION_SEND);
+            waIntent.setType("text/plain");
+
+            PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
+            //Check if package exists or not. If not then code
+            //in catch block will be called
+            waIntent.setPackage("com.whatsapp");
+
+            waIntent.putExtra(Intent.EXTRA_TEXT, message);
+            startActivity(Intent.createChooser(waIntent, "Share with"));
+
+        } catch (PackageManager.NameNotFoundException e) {
+            Toast.makeText(this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
+                    .show();
+        }*/
+
+
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
+        //PT 1
+        Bitmap imgBitmap = BitmapFactory.decodeByteArray(imageCollection.get(0), 0, imageCollection.get(0).length);
+        String imgBitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),imgBitmap,idealPictures.get(0).getTitle(),null);
+        Uri imgBitmapUri = Uri.parse(imgBitmapPath);
+        //shareIntent.putExtra(Intent.EXTRA_STREAM,imgBitmapUri);
+        //PT 2
+        Bitmap img2Bitmap = BitmapFactory.decodeByteArray(imageCollection.get(1), 0, imageCollection.get(1).length);
+        String img2BitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),img2Bitmap,idealPictures.get(1).getTitle(),null);
+        Uri img2BitmapUri = Uri.parse(img2BitmapPath);
+        //shareIntent.putExtra(Intent.EXTRA_STREAM,img2BitmapUri);
+        //PT 3
+        Bitmap img3Bitmap = BitmapFactory.decodeByteArray(imageCollection.get(2), 0, imageCollection.get(2).length);
+        String img3BitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),img3Bitmap,idealPictures.get(2).getTitle(),null);
+        Uri img3BitmapUri = Uri.parse(img3BitmapPath);
+
+        //PT 4
+        Bitmap img4Bitmap = BitmapFactory.decodeByteArray(imageCollection.get(3), 0, imageCollection.get(3).length);
+        String img4BitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),img4Bitmap,idealPictures.get(3).getTitle(),null);
+        Uri img4BitmapUri = Uri.parse(img4BitmapPath);
+
+        //PT 3
+        Bitmap img5Bitmap = BitmapFactory.decodeByteArray(imageCollection.get(4), 0, imageCollection.get(4).length);
+        String img5BitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),img5Bitmap,idealPictures.get(4).getTitle(),null);
+        Uri img5BitmapUri = Uri.parse(img5BitmapPath);
+
+
+//
+        ArrayList<Uri> files = new ArrayList<Uri>();
+        files.add(imgBitmapUri);  // uri of my bitmap image1
+        files.add(img2BitmapUri); // uri of my bitmap image2
+        files.add(img3BitmapUri); // uri of my bitmap image2
+        files.add(img4BitmapUri);
+        files.add(img5BitmapUri);
+
+        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, files);
+
+        ///
+
+
+
+        shareIntent.setType("image/png");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "My Custom Text ");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject text");
+        startActivity(Intent.createChooser(shareIntent, "Share this"));
     }
 
 
@@ -151,7 +268,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         setContentView(R.layout.activity_camera4);
         //Initialize the Interface Variables & Listeners
         btnCamera = (Button)findViewById(R.id.btnCamera);
-        //btnContinue = (Button)findViewById(R.id.btnConfirmImage);
+        btnContinue = (Button)findViewById(R.id.btnConfirmImage);
         imageView = (ImageView)findViewById(R.id.imageView);
         setNewImage();
 
@@ -167,7 +284,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
             }
         });
 
-/*
+
         btnContinue.setText("Confirm Picture");
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,13 +292,12 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
                 indexOfPictures += 1;
                 imageCollection.add(currentPicture);
 
+                setContentView(R.layout.time_to_get_started);
+                startGetStarted();
                 showIdealImage();
+
             }
         });
-        //indexOfPictures += 1;
-
- */
-
     }
 
     private void startCamera(){
@@ -209,7 +325,6 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
 
     protected void setNewImage(){
-        Toast.makeText(getApplicationContext(),"WE TRIED TO SET NEW IMAGE", Toast.LENGTH_SHORT).show();
         Bitmap bitmap = BitmapFactory.decodeByteArray(currentPicture, 0, currentPicture.length);
         Matrix matrix = new Matrix();
         matrix.postRotate(90);
