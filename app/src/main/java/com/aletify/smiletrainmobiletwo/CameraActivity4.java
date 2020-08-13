@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -42,6 +43,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
     private SurfaceHolder surfaceHolder;
     private Button capture_image;
     private byte[] currentPicture;
+    private Bitmap currentPictureInImageView;
     private ArrayList<byte[]> imageCollection;
     private ArrayList<OnboardingItem> idealPictures;
 
@@ -52,6 +54,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
     private TextView startingSubtitle;
     private ImageView idealImageView;
     private Button buttonStartAction;
+    ArrayList<Uri> files;
 
 
 
@@ -62,13 +65,19 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         getSupportActionBar().hide();
         idealPictures = new ArrayList<>();
         imageCollection = new ArrayList<>();
+        files = new ArrayList<Uri>();
 
         //Starting Content Interface View
         //startInterface();
         indexOfPictures = 0;
         setupPictures();
         startGetStarted();
+    }
 
+    protected void onDestroy(){
+        super.onDestroy();
+        clearAll();
+        Toast.makeText(getApplicationContext(), "Clearing Images from Aletify", Toast.LENGTH_SHORT);
     }
 
 
@@ -141,6 +150,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (options[which].equals("Yes")) {
+                    clearAll();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
 
@@ -179,84 +189,40 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
                 }
             });
         }
-
-
     }
+
+
+    protected void storeImageAndReturnUrl(int imageNumber){
+        //Bitmap imgBitmap = BitmapFactory.decodeByteArray(currentPicture, 0, currentPicture.length);
+        String imgBitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),currentPictureInImageView,idealPictures.get(imageNumber).getTitle(),null);
+        Uri imgBitmapUri = Uri.parse(imgBitmapPath);
+        files.add(imgBitmapUri);
+    }
+
+
+
 
     protected void openwhatsapp(String message){
 
-
-        /*
-        PackageManager pm=getPackageManager();
-        try {
-
-            Intent waIntent = new Intent(Intent.ACTION_SEND);
-            waIntent.setType("text/plain");
-
-            PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
-            //Check if package exists or not. If not then code
-            //in catch block will be called
-            waIntent.setPackage("com.whatsapp");
-
-            waIntent.putExtra(Intent.EXTRA_TEXT, message);
-            startActivity(Intent.createChooser(waIntent, "Share with"));
-
-        } catch (PackageManager.NameNotFoundException e) {
-            Toast.makeText(this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
-                    .show();
-        }*/
-
-
-
         Intent shareIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
         shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-
-        //PT 1
-        Bitmap imgBitmap = BitmapFactory.decodeByteArray(imageCollection.get(0), 0, imageCollection.get(0).length);
-        String imgBitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),imgBitmap,idealPictures.get(0).getTitle(),null);
-        Uri imgBitmapUri = Uri.parse(imgBitmapPath);
-        //shareIntent.putExtra(Intent.EXTRA_STREAM,imgBitmapUri);
-        //PT 2
-        Bitmap img2Bitmap = BitmapFactory.decodeByteArray(imageCollection.get(1), 0, imageCollection.get(1).length);
-        String img2BitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),img2Bitmap,idealPictures.get(1).getTitle(),null);
-        Uri img2BitmapUri = Uri.parse(img2BitmapPath);
-        //shareIntent.putExtra(Intent.EXTRA_STREAM,img2BitmapUri);
-        //PT 3
-        Bitmap img3Bitmap = BitmapFactory.decodeByteArray(imageCollection.get(2), 0, imageCollection.get(2).length);
-        String img3BitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),img3Bitmap,idealPictures.get(2).getTitle(),null);
-        Uri img3BitmapUri = Uri.parse(img3BitmapPath);
-
-        //PT 4
-        Bitmap img4Bitmap = BitmapFactory.decodeByteArray(imageCollection.get(3), 0, imageCollection.get(3).length);
-        String img4BitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),img4Bitmap,idealPictures.get(3).getTitle(),null);
-        Uri img4BitmapUri = Uri.parse(img4BitmapPath);
-
-        //PT 3
-        Bitmap img5Bitmap = BitmapFactory.decodeByteArray(imageCollection.get(4), 0, imageCollection.get(4).length);
-        String img5BitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),img5Bitmap,idealPictures.get(4).getTitle(),null);
-        Uri img5BitmapUri = Uri.parse(img5BitmapPath);
-
-
-//
-        ArrayList<Uri> files = new ArrayList<Uri>();
-        files.add(imgBitmapUri);  // uri of my bitmap image1
-        files.add(img2BitmapUri); // uri of my bitmap image2
-        files.add(img3BitmapUri); // uri of my bitmap image2
-        files.add(img4BitmapUri);
-        files.add(img5BitmapUri);
-
         shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, files);
 
         ///
-
-
-
         shareIntent.setType("image/png");
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         shareIntent.putExtra(Intent.EXTRA_TEXT, "My Images");
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Images of Teeth");
         startActivity(Intent.createChooser(shareIntent, "Share this"));
+        clearAll();
+    }
+
+    protected void clearAll(){
+        for (int i = 0; i < files.size(); i++){
+            File file = new File(String.valueOf(files.get(i)));
+            boolean deleted = file.delete();
+        }
+        Toast.makeText(getApplicationContext(), "Images Deleted from your Machine", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -267,11 +233,6 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         btnContinue = (Button)findViewById(R.id.btnConfirmImage);
         imageView = (ImageView)findViewById(R.id.imageView);
         setNewImage();
-
-        //originalImage = (ImageView)findViewById(R.id.originalImage);
-        //originalImage.setImageResource(idealPictures.get(indexOfPictures).getImage());
-
-
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -285,10 +246,14 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //imageCollection.add(currentPicture);
+                storeImageAndReturnUrl(indexOfPictures);
                 indexOfPictures += 1;
-                imageCollection.add(currentPicture);
+
 
                 setContentView(R.layout.time_to_get_started);
+                currentPictureInImageView.recycle();
+                currentPictureInImageView = null;
                 startGetStarted();
                 showIdealImage();
 
@@ -325,24 +290,26 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         Matrix matrix = new Matrix();
         matrix.postRotate(90);
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
-        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
-        imageView.setImageBitmap(rotatedBitmap);
+        currentPictureInImageView = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+        imageView.setImageBitmap(currentPictureInImageView);
         bitmap.recycle();
         scaledBitmap.recycle();
-
-
+        bitmap = null;
+        scaledBitmap = null;
     }
+
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-        // imageView.setImageBitmap(bitmap);
+
         byte[] image = data.getExtras().getByteArray("image_arr");
         Bitmap bmp = BitmapFactory.decodeByteArray(image, 0,
                 image.length);
 
         imageView.setImageBitmap(bmp);
     }
+     */
 
 
     ///////CAMERA ORIGINS////////////
@@ -354,27 +321,12 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
                 Toast.makeText(getApplicationContext(), "Picture Taken",
                         Toast.LENGTH_SHORT).show();
 
-                //Intent intent = new Intent(getApplicationContext(), CameraActivity4.class);
-                //intent.putExtra("image_arr", data);
-                //setResult(RESULT_OK, intent);
-
                 currentPicture = data;
                 if (camera != null){
                     camera.release();
                     mCamera = null;
                 }
                 startInterface();
-                /*
-                camera.stopPreview();
-                if (camera != null) {
-                    camera.release();
-                    mCamera = null;
-                }
-                Toast.makeText(getApplicationContext(), "Picture Complete",
-                        Toast.LENGTH_SHORT).show();
-                //startActivity(intent);
-*/
-
             }
         });
     }

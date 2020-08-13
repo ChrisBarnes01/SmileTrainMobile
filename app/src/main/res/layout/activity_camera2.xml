@@ -26,7 +26,7 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:alpha="0.4"
-                    android:src="@drawable/pokemonollymoss"
+                    android:src="@drawable/construction"
                     android:translationZ="90dp">
 
                 </ImageView>

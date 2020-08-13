@@ -51,8 +51,6 @@ public class CheckIn extends AppCompatActivity {
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                //String value = String.valueOf(v);
-                //healthquestion.setText(value);
                 hasBeenPressed = true;
             }
         });

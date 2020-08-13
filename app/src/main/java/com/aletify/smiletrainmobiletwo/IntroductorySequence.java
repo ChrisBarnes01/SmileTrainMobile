@@ -24,7 +24,6 @@ public class IntroductorySequence extends AppCompatActivity {
     private MaterialButton buttonOnboardingAction;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         if (firstStart){
             runIntroSequence();
         }
-        //final ViewPager2 onboardingViewPager = findViewById(R.id.onboardingViewPager);
 
         final CardView camera = findViewById(R.id.camera);
         final CardView cameraFlow = findViewById(R.id.camera_flow);
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(getApplicationContext(), CameraActivity2.class);
                 Intent intent = new Intent(getApplicationContext(), CameraActivity4.class);
                 startActivity(intent);
 
@@ -77,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 runMainSequence();
-                //Toast.makeText(getApplicationContext(), "Going to Camera Flow!!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -96,9 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 runIntroSequence();
             }
         });
-
-
-
 
 
 
@@ -135,26 +129,12 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-        /*new AlertDialog.Builder(this).setTitle("StartingDialog")
-                .setMessage("This should only be displayed once")
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create().show();
-
-         */
     }
 
     private void runHealthCheck(){
         //What preference should I use?
         Intent intent = new Intent(getApplicationContext(), CheckIn.class);
-        //overridePendingTransition(0, 0);
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_);
         startActivity(intent);
-
     }
 
 

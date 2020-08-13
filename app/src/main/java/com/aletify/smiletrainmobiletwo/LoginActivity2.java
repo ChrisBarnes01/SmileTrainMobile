@@ -25,8 +25,6 @@ public class LoginActivity2 extends AppCompatActivity {
     Button selectProfilePicture;
     Button confirmButton;
 
-    int PICK_IMAGE = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +49,6 @@ public class LoginActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selectImage(getApplicationContext());
-                /*Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
-                Toast.makeText(getApplicationContext(),"Select picture", Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -76,29 +69,6 @@ public class LoginActivity2 extends AppCompatActivity {
     private void selectImage(Context context) {
         Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickPhoto , 1);
-
-        /*final String[] options = {"Take Photo", "Choose from Gallery","Cancel"};
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Select a Photo");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (options[which].equals("Take Photo")) {
-                    Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(takePicture, 0);
-
-                } else if (options[which].equals("Choose from Gallery")) {
-                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(pickPhoto , 1);
-
-                } else if (options[which].equals("Cancel")) {
-                    dialog.dismiss();
-                }
-            }
-        });
-        builder.show();
-*/
     }
 
     @Override
@@ -129,14 +99,5 @@ public class LoginActivity2 extends AppCompatActivity {
             }
         }
     }
-
-
-    /*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == PICK_IMAGE) {
-        }
-    }*/
 
 }
