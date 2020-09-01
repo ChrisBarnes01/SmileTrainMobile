@@ -11,11 +11,13 @@ import androidx.transition.TransitionManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class FAQ extends AppCompatActivity {
 
-    ConstraintLayout expandableView;
-    Button arrowBtn;
+    LinearLayout expandableView;
+    ImageView arrowBtn;
     CardView cardView;
 
     @Override
@@ -33,11 +35,11 @@ public class FAQ extends AppCompatActivity {
                 if (expandableView.getVisibility()==View.GONE){
                     TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                     expandableView.setVisibility(View.VISIBLE);
-                    arrowBtn.setBackgroundResource(R.drawable.hello);
+                    arrowBtn.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
                 } else {
                     TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                     expandableView.setVisibility(View.GONE);
-                    arrowBtn.setBackgroundResource(R.drawable.construction);
+                    arrowBtn.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
                 }
             }
         });

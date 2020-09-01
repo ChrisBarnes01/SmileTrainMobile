@@ -18,6 +18,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -25,115 +26,67 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="12dp">
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp">
 
-
-                <Button
+                <ImageView
                     android:id="@+id/arrowBtn"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/construction"
-                    app:layout_constraintBottom_toBottomOf="@+id/view"
+                    android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
+                    app:layout_constraintBottom_toBottomOf="@id/question_title"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/view" />
-
-
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/question_title"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
-                    android:text="Victoria Smith"
-                    app:layout_constraintStart_toEndOf="@+id/view"
-                    app:layout_constraintTop_toTopOf="@+id/view" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/view"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="16dp"
-                    android:elevation="12dp"
-                    app:cardCornerRadius="25dp"
+                    android:text="Question...?"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/circleImage"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/hello" />
 
-                </androidx.cardview.widget.CardView>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:id="@+id/expandableView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginEnd="12dp"
                     android:paddingBottom="12dp"
                     android:visibility="gone"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view">
-
-                    <ImageView
-                        android:id="@+id/phoneIcon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="22dp"
-                        android:src="@drawable/hello"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/mailIcon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="22dp"
-                        android:src="@drawable/hello"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/phoneIcon" />
+                    app:layout_constraintTop_toBottomOf="@id/question_title">
 
                     <TextView
-                        android:id="@+id/phoneDesc"
-                        style="@style/TextAppearance.AppCompat.Body1"
-                        android:layout_width="0dp"
+                        android:id="@+id/question_text"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:text="Mobile"
-                        android:textColor="#8A000000"
-                        app:layout_constraintBottom_toBottomOf="@+id/phoneIcon"
-                        app:layout_constraintStart_toEndOf="@id/phoneIcon"
-                        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+                        android:text="This is the solution?? I think we can go long with this!! Can we see
+what happens when we go to a second line? I'm not quite sure just yet!!"
+                        />
 
                     <TextView
-                        android:id="@+id/phoneNumber"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_width="0dp"
+                        android:id="@+id/dropdown_action_item"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:text="(999) 345 32 45"
-                        android:textColor="#000"
-                        app:layout_constraintBottom_toTopOf="@+id/phoneDesc"
-                        app:layout_constraintStart_toEndOf="@id/phoneIcon"
-                        app:layout_constraintTop_toTopOf="@+id/phoneIcon" />
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:clickable="true"
+                        android:text="Launch Activity"
+                        />
 
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
