@@ -45,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
             runIntroSequence();
         }
 
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        /*
         final CardView camera = findViewById(R.id.camera);
         final CardView cameraFlow = findViewById(R.id.camera_flow);
         final RatingBar ratingLink = findViewById(R.id.ratingBarLink);
         final CardView seeIntroduction = findViewById(R.id.introduction);
-        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
 
         //Set the Main Customized Titles
@@ -120,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 50);
         }
 
+         */
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

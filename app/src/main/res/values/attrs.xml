@@ -5,4 +5,9 @@
         <attr name="trackText" format="string" />
         <attr name="buyButton" format="string" />
     </declare-styleable>
+    <declare-styleable name="DropdownView">
+        <attr name="titleText" format="string" />
+        <attr name="messageText" format="string" />
+        <attr name="actionText" format="string" />
+    </declare-styleable>
 </resources>

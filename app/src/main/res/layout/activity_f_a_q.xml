@@ -1,100 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Modified From -https://github.com/gifffert/ExpandableCardView/blob/master/app/src/main/res/layout/activity_main.xml -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#E4E3E3">
+    android:background="#E5E5E5"
+    android:layout_height="match_parent">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            style="@style/CardView.Light"
+        <TextView
+            android:background="@color/colorBackground"
+            android:text="Most Asked Questions"
+            android:id="@+id/top_bar"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:gravity="center_horizontal"
+            android:textSize="30sp"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="top"
+            />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:context=".MainActivity">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
+
+
+            <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="24dp"
-                android:paddingBottom="24dp">
+                app:actionText="FUNK DAT"
+                app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
+                app:titleText="Question??" />
 
-                <ImageView
-                    android:id="@+id/arrowBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
-                    app:layout_constraintBottom_toBottomOf="@id/question_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.aletify.smiletrainmobiletwo.DropdownView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:actionText="FUNK DAT"
+                app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
+                app:titleText="Question?? UGH TWO??" />
 
-                <TextView
-                    android:id="@+id/question_title"
-                    style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:text="Question...?"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.aletify.smiletrainmobiletwo.DropdownView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:actionText="FUNK DAT"
+                app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
+                app:titleText="Question Three" />
+            <com.aletify.smiletrainmobiletwo.DropdownView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:actionText="FUNK DAT"
+                app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
+                app:titleText="Question Four" />
 
+        </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/expandableView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:paddingBottom="12dp"
-                    android:visibility="gone"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/question_title">
-
-                    <TextView
-                        android:id="@+id/question_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="This is the solution?? I think we can go long with this!! Can we see
-what happens when we go to a second line? I'm not quite sure just yet!!"
-                        />
-
-                    <TextView
-                        android:id="@+id/dropdown_action_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold"
-                        android:clickable="true"
-                        android:text="Launch Activity"
-                        />
-
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-
-
+    </ScrollView>
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -102,6 +84,7 @@ what happens when we go to a second line? I'm not quite sure just yet!!"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_weight="1"
         app:menu="@menu/bottom_navigation_menu" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

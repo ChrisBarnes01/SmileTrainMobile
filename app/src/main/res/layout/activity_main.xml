@@ -4,6 +4,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#E5E5E5"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hello World">
+    </TextView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
@@ -103,10 +142,10 @@
             android:alignmentMode="alignBounds"
             android:columnOrderPreserved="true"
             android:layout_height="wrap_content">
-            <!-- Row 1 -->
+            <- Row 1 -->
 
             <!-- Column 1 -->
-            <androidx.cardview.widget.CardView
+            <!--androidx.cardview.widget.CardView
                 android:id="@+id/camera_flow"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
@@ -127,13 +166,13 @@
                     android:layout_margin="16dp"
                     android:orientation="vertical">
 
-                    <!--ImageView
+                    <-ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/pokemonollymoss" /-->
 
-                    <TextView
+                    <!--TextView
                         android:id="@+id/frstText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -169,13 +208,13 @@
                     android:layout_margin="16dp"
                     android:orientation="vertical">
 
-                    <!--ImageView
+                    <-ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/trianles" /-->
 
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Camera"
@@ -198,10 +237,10 @@
             android:alignmentMode="alignBounds"
             android:columnOrderPreserved="true"
             android:layout_height="wrap_content">
-            <!-- Row 1 -->
+            <- Row 1 -->
 
             <!-- Column 1 -->
-            <androidx.cardview.widget.CardView
+            <!--androidx.cardview.widget.CardView
                 android:id="@+id/camera_flow"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
@@ -222,13 +261,13 @@
                     android:layout_margin="16dp"
                     android:orientation="vertical">
 
-                    <!--ImageView
+                    <-ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/pokemonollymoss" /-->
 
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Calendar"
@@ -263,13 +302,13 @@
                     android:layout_margin="16dp"
                     android:orientation="vertical">
 
-                    <!--ImageView
+                    <-ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/trianles" /-->
 
-                    <TextView
+                    <!--TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rewatch Introduction"
@@ -289,7 +328,6 @@
 
 
 
-        <!--
         <GridLayout
             android:id="@+id/mainGrid"
             android:layout_width="match_parent"
@@ -305,7 +343,7 @@
         </GridLayout-->
 
 
-    </LinearLayout>
+    <!--/LinearLayout>
 
 </ScrollView>
 
@@ -317,4 +355,4 @@
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_navigation_menu" />
 
-</RelativeLayout>
+</RelativeLayout-->

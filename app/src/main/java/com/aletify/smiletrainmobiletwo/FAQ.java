@@ -25,23 +25,10 @@ public class FAQ extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_a_q);
 
-        expandableView = findViewById(R.id.expandableView);
-        arrowBtn = findViewById(R.id.arrowBtn);
-        cardView = findViewById(R.id.cardView);
+        expandableView = findViewById(R.id.dropdown_expandable_view);
+        arrowBtn = findViewById(R.id.dropdown_arrow_sign);
+        cardView = findViewById(R.id.dropdown_cardView);
 
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (expandableView.getVisibility()==View.GONE){
-                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-                    expandableView.setVisibility(View.VISIBLE);
-                    arrowBtn.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
-                } else {
-                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-                    expandableView.setVisibility(View.GONE);
-                    arrowBtn.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
-                }
-            }
-        });
+
     }
 }
