@@ -55,13 +55,11 @@ public class IntroductorySequence extends AppCompatActivity {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 }
-
             }
         });
-
     }
 
     private void setupOnboardingItems() {

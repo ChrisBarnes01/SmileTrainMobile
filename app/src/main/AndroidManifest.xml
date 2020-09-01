@@ -4,30 +4,38 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
         android:theme="@style/AppTheme">
-
-        <activity android:name="com.aletify.smiletrainmobiletwo.LoginActivity2"></activity>
-        <activity android:name="com.aletify.smiletrainmobiletwo.CameraActivity4" />
         <activity
-            android:name="com.aletify.smiletrainmobiletwo.MainSequence"
+            android:name=".FAQ"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".CreateAccount"
+            android:label="CreateAccount"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".LoginActivity2" />
+        <activity android:name=".CameraActivity4" />
+        <activity
+            android:name=".MainSequence"
             android:label="@string/title_activity_main_sequence"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.aletify.smiletrainmobiletwo.CheckIn"
+            android:name=".CheckIn"
             android:label="@string/title_activity_check_in"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.aletify.smiletrainmobiletwo.IntroductorySequence"
+            android:name=".IntroductorySequence"
             android:label="@string/title_activity_introductory_sequence"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.aletify.smiletrainmobiletwo.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -41,11 +49,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
 
 </manifest>

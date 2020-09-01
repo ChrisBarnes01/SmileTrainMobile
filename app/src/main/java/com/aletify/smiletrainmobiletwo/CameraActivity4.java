@@ -86,29 +86,29 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
     private void setupPictures(){
         OnboardingItem item1 = new OnboardingItem();
         item1.setTitle("Front of Mouth");
-        item1.setImage(R.drawable.front);
-        item1.setOverlayImage(R.drawable.front);
+        //item1.setImage(R.drawable.front);
+        //item1.setOverlayImage(R.drawable.front);
 
         OnboardingItem item2 = new OnboardingItem();
-        item2.setTitle("Right of Mouth");
-        item2.setImage(R.drawable.right);
+        //item2.setTitle("Right of Mouth");
+        //item2.setImage(R.drawable.right);
 
         item2.setOverlayImage(R.drawable.right);
 
         OnboardingItem item3 = new OnboardingItem();
         item3.setTitle("Left of Mouth");
-        item3.setImage(R.drawable.left);
-        item3.setOverlayImage(R.drawable.left);
+        //item3.setImage(R.drawable.left);
+        //item3.setOverlayImage(R.drawable.left);
 
         OnboardingItem item4 = new OnboardingItem();
         item4.setTitle("Top of Mouth");
-        item4.setImage(R.drawable.top);
-        item4.setOverlayImage(R.drawable.top);
+        //item4.setImage(R.drawable.top);
+        //item4.setOverlayImage(R.drawable.top);
 
         OnboardingItem item5 = new OnboardingItem();
         item5.setTitle("Bottom of Mouth");
-        item5.setImage(R.drawable.bottom);
-        item5.setOverlayImage(R.drawable.bottom);
+        //item5.setImage(R.drawable.bottom);
+        //item5.setOverlayImage(R.drawable.bottom);
 
         idealPictures.add(item1);
         idealPictures.add(item2);

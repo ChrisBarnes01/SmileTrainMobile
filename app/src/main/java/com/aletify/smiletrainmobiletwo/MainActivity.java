@@ -8,15 +8,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
 
+        //JUMP TO CREATE_ACCOUNT PAGE
+        //DELETE THIS LATER
+        //runCreateAccount();
+
+
         if (firstStart){
             runIntroSequence();
         }
@@ -38,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         final CardView cameraFlow = findViewById(R.id.camera_flow);
         final RatingBar ratingLink = findViewById(R.id.ratingBarLink);
         final CardView seeIntroduction = findViewById(R.id.introduction);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
 
         //Set the Main Customized Titles
@@ -108,14 +120,54 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 50);
         }
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                item.setCheckable(true);
+
+                switch (item.getItemId()) {
+                    case R.id.home_page_nav: {
+                        Toast.makeText(getApplicationContext(), "Home!", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                    case R.id.camera_page_nav: {
+                        Toast.makeText(getApplicationContext(), "Camera!", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                    case R.id.info_page_nav: {
+                        runFAQ();
+                    }
+                    break;
+                    case R.id.settings_page_nav: {
+                        Toast.makeText(getApplicationContext(), "Settings!", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+                return true;
+            }
+        });
+
+
 
         //Also, used SharedPreferences to do login flow!!
 
 
+
+
+    }
+
+    private void runCreateAccount(){
+        Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+        startActivity(intent);
     }
 
     private void runMainSequence(){
         Intent intent = new Intent(getApplicationContext(), MainSequence.class);
+        startActivity(intent);
+    }
+
+    private void runFAQ(){
+        Intent intent = new Intent(getApplicationContext(), FAQ.class);
         startActivity(intent);
     }
 

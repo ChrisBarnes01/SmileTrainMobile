@@ -71,37 +71,37 @@ public class MainSequence extends AppCompatActivity {
         OnboardingItem page1 = new OnboardingItem();
         page1.setTitle("Para poder tomar fotos nítidas");
         page1.setDescription("Limpie la lente de la cámara con una tela");
-        page1.setImage(R.drawable.main1);
+        //page1.setImage(R.drawable.main1);
 
         OnboardingItem page2 = new OnboardingItem();
         page2.setTitle("Para poder tomar fotos bien iluminadas");
         page2.setDescription("Sentase detrás de una luz");
-        page2.setImage(R.drawable.main2);
+        //page2.setImage(R.drawable.main2);
 
         OnboardingItem page3 = new OnboardingItem();
         page3.setTitle("Para poder tomar fotos claras");
         page3.setDescription("Mantener la cara visible. Asegurate: - Amarrarte el pelo");
-        page3.setImage(R.drawable.main3);
+        //page3.setImage(R.drawable.main3);
 
         OnboardingItem page4 = new OnboardingItem();
         page4.setTitle("Para poder tomar fotos no borrosas");
         page4.setDescription("Agarra el cellular cerca de su cuerpo");
-        page4.setImage(R.drawable.main4);
+        //page4.setImage(R.drawable.main4);
 
         OnboardingItem page5 = new OnboardingItem();
         page5.setTitle("Para poder tomar fotos alineadas");
         page5.setDescription("Agarra el cellular a la altura de su cara");
-        page5.setImage(R.drawable.main5);
+        //page5.setImage(R.drawable.main5);
 
         OnboardingItem page6 = new OnboardingItem();
         page6.setTitle("Para ver los alineadores");
         page6.setDescription("Coloque los alineadores superior e inferior");
-        page6.setImage(R.drawable.main6);
+        //page6.setImage(R.drawable.main6);
 
         OnboardingItem page7 = new OnboardingItem();
         page7.setTitle("Para poder tomar fotos detalladas");
         page7.setDescription("Coloca los retractores y hace fuerza hacia afuera para que se vea la mayor parte posible de sus dientes");
-        page7.setImage(R.drawable.main7);
+        //page7.setImage(R.drawable.main7);
 
         onboardingItems.add(page1);
         onboardingItems.add(page2);

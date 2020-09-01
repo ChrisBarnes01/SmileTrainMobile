@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryBlue"
+        android:textColor="@color/colorWhite"
         android:text="Time To Take Pictures"
         android:textSize="35sp"
         android:gravity="center_horizontal"
