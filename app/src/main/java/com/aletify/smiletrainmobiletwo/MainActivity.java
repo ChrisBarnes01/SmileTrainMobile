@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
          */
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        /*bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 item.setCheckable(true);
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+         */
 
 
         //Also, used SharedPreferences to do login flow!!

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Modified From -https://github.com/gifffert/ExpandableCardView/blob/master/app/src/main/res/layout/activity_main.xml -->
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
