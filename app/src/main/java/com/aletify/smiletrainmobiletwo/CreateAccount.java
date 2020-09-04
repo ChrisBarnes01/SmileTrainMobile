@@ -3,16 +3,29 @@ package com.aletify.smiletrainmobiletwo;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +35,11 @@ public class CreateAccount extends AppCompatActivity {
     private CreateAccountAdapter createAccountAdapter;
     private LinearLayout layoutProgressIndicators;
     private MaterialButton buttonOnboardingAction;
+    private ViewPager2 createAccountViewPager;
+    private FirebaseAuth mAuth;
+    String globalUsername;
+    String globalPassword;
+
 
 
     @Override
@@ -34,7 +52,7 @@ public class CreateAccount extends AppCompatActivity {
 
         setupCreateAccountItems();
 
-        final ViewPager2 createAccountViewPager = findViewById(R.id.createAccountViewPager);
+        createAccountViewPager = findViewById(R.id.createAccountViewPager);
         createAccountViewPager.setAdapter(createAccountAdapter);
 
         setupProgressIndicators();
@@ -48,39 +66,45 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
-        buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                if(createAccountViewPager.getCurrentItem() + 1 < createAccountAdapter.getItemCount()){
-                    createAccountViewPager.setCurrentItem(createAccountViewPager.getCurrentItem() + 1);
-                }
-                else{
-                    startActivity(new Intent(getApplicationContext(), LoginActivity2.class));
-                    finish();
-                }
-            }
-        });
+        //Stop User From Swiping Forward or Back
+        createAccountViewPager.setUserInputEnabled(false);
+
+        //This sets mAuth.
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     private void setupCreateAccountItems() {
         List<CreateAccountItem> createAccountItems = new ArrayList<>();
 
         CreateAccountItem page1 = new CreateAccountItem();
-        page1.setTitle("Welcome to Aletify.");
-        page1.setDescription("We're here to help you manage your dental health.");
-        //page1.setInput1("First Input");
-        //page1.setInput_prefill_2("prefill");
-        page1.setInput2("Second Input");
-        page1.setInput_prefill_2("prefill");
-        //page1.setImage(R.drawable.hello);
+        page1.setTitle("Sign Up");
+        page1.setDescription("Use the login credentials your doctor gave you");
+        page1.setInput1("USERNAME");
+        page1.setInput_prefill_1("Username");
+        page1.setInput2("TEMPORARY PASSWORD");
+        page1.setInput_prefill_2("Temporary Password");
 
         CreateAccountItem page2 = new CreateAccountItem();
-        page2.setTitle("This app is an early stage demo.");
-        //page2.setDescription("But, we're working to get the final version out to you.");
-        //page2.setImage(R.drawable.construction);
+        page2.setTitle("Set Password");
+        page2.setDescription("Please create a new password for your account");
+        page2.setInput1("NEW PASSWORD");
+        page2.setInput_prefill_1("Password");
+        page2.setInput2("RETYPE PASSWORD");
+        page2.setInput_prefill_2("Password");
+
+        CreateAccountItem page3 = new CreateAccountItem();
+        page3.setTitle("Set up your profile");
+        page3.setInput1("FIRST NAME");
+        page3.setInput_prefill_1("First Name");
+        page3.setInput2("LAST NAME");
+        page3.setInput_prefill_2("Last Name");
+        page3.setInput3("WHATSAPP NUMBER");
+        page3.setInput_prefill_3("+57-MMM-XXX-XXXX");
 
         createAccountItems.add(page1);
         createAccountItems.add(page2);
+        createAccountItems.add(page3);
 
         createAccountAdapter = new CreateAccountAdapter(createAccountItems);
 
@@ -119,11 +143,129 @@ public class CreateAccount extends AppCompatActivity {
             }
         }
 
-        if (index == createAccountAdapter.getItemCount()-1){
-            buttonOnboardingAction.setText("Start");
+        if (index == 0){
+            buttonOnboardingAction.setText("Next");
+            buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+
+                    EditText username = (EditText) findViewById(R.id.input1CreateAccount);
+                    EditText password = (EditText) findViewById(R.id.input2CreateAccount);
+
+                    final String usernameString = username.getText().toString();
+                    final String passwordString = password.getText().toString();
+
+                    try {
+                        mAuth.signInWithEmailAndPassword(usernameString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_LONG).show();
+                                    globalUsername = usernameString;
+                                    globalPassword = passwordString;
+
+                                    if(createAccountViewPager.getCurrentItem() + 1 < createAccountAdapter.getItemCount()){
+                                        createAccountViewPager.setCurrentItem(createAccountViewPager.getCurrentItem() + 1);
+                                    }
+                                }else {
+                                    Toast.makeText(getApplicationContext(), "Registration Failed. Try Again", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }catch (Exception e){
+                        Toast.makeText(getApplicationContext(), "Failed to Register", Toast.LENGTH_LONG).show();
+                    };
+                }
+            });
+        }
+        else if (index == 1){
+            buttonOnboardingAction.setText("Next");
+            buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    EditText firstPassword = (EditText) findViewById(R.id.input1CreateAccount);
+                    EditText secondPassword = (EditText) findViewById(R.id.input2CreateAccount);
+
+                    final String firstPasswordString = firstPassword.getText().toString();
+                    final String secondPasswordString = secondPassword.getText().toString();
+
+                    AuthCredential credential = EmailAuthProvider.getCredential(globalUsername, globalPassword);
+
+                    if (firstPasswordString.length() < 6){
+                        Toast.makeText(getApplicationContext(), "Passwords Must Have At Least 6 Characters", Toast.LENGTH_LONG).show();
+                    }
+                    else if (firstPasswordString.equals(secondPasswordString)){
+                        try {
+                            user.reauthenticate(credential)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                user.updatePassword(firstPasswordString).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Toast.makeText(getApplicationContext(), "Password Changed Successfully", Toast.LENGTH_SHORT).show();
+                                                            if(createAccountViewPager.getCurrentItem() + 1 < createAccountAdapter.getItemCount()){
+                                                                createAccountViewPager.setCurrentItem(createAccountViewPager.getCurrentItem() + 1);
+                                                            }
+                                                        } else {
+                                                            Log.d("TAG", "Error password not updated");
+                                                            Toast.makeText(getApplicationContext(), "Failed to Change Password :" + task.getException(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                Log.d("TAG", "Error auth failed");
+                                                Toast.makeText(getApplicationContext(), "Failed to Change Password. -- addOnComplete Listener", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                        }
+                        catch (Exception e){
+                            Toast.makeText(getApplicationContext(), "Failed to Change Password: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Passwords Do Not Match", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
         }
         else{
             buttonOnboardingAction.setText("Next");
+            buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    EditText firstName = (EditText) findViewById(R.id.input1CreateAccount);
+                    EditText lastName = (EditText) findViewById(R.id.input2CreateAccount);
+                    EditText whatsAppNumber = (EditText) findViewById(R.id.input3CreateAccount);
+
+                    final String firstNameString = firstName.getText().toString();
+                    final String lastNameString = lastName.getText().toString();
+                    final String whatsAppNumberString = whatsAppNumber.getText().toString();
+
+                    if (firstNameString.length() < 1 || lastNameString.length() < 1 || whatsAppNumber.length() < 1){
+                        Toast.makeText(getApplicationContext(), "Please fill out All Parameters", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("patients");
+                        User user = new User(globalUsername, firstNameString, lastNameString, whatsAppNumberString);
+                        mDatabase.child("test1").setValue(user);
+
+                        if(createAccountViewPager.getCurrentItem() + 1 < createAccountAdapter.getItemCount()){
+                            createAccountViewPager.setCurrentItem(createAccountViewPager.getCurrentItem() + 1);
+                        }
+                        else{
+                            startActivity(new Intent(getApplicationContext(), IntroductorySequence.class));
+                            finish();
+                        }
+                    }
+                }
+            });
         }
     }
 }

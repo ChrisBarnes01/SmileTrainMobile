@@ -96,7 +96,7 @@ public class CreateAccountAdapter extends RecyclerView.Adapter<CreateAccountAdap
                 input1.setVisibility(View.GONE);
             }
             else{
-                input1.setText(onboardingItem.getInput_prefill_1());
+                input1.setHint(onboardingItem.getInput_prefill_1());
             }
 
             //INPUT2 TEXT
@@ -112,7 +112,7 @@ public class CreateAccountAdapter extends RecyclerView.Adapter<CreateAccountAdap
                 input2.setVisibility(View.GONE);
             }
             else{
-                input2.setText(onboardingItem.getInput_prefill_2());
+                input2.setHint(onboardingItem.getInput_prefill_2());
             }
 
             //INPUT3 TEXT
@@ -128,7 +128,7 @@ public class CreateAccountAdapter extends RecyclerView.Adapter<CreateAccountAdap
                 input3.setVisibility(View.GONE);
             }
             else{
-                input3.setText(onboardingItem.getInput_prefill_3());
+                input3.setHint(onboardingItem.getInput_prefill_3());
             }
 
 

@@ -1,7 +1,6 @@
 package com.aletify.smiletrainmobiletwo;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -13,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.hardware.Camera;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -28,10 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -45,7 +41,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.Callback{
+public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.Callback{
 
     //Interface Overlay
     ImageView imageView;
@@ -92,8 +88,43 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         //Starting Content Interface View
         //startInterface();
         indexOfPictures = 0;
-        setupPictures();
-        startGetStarted();
+        //setupPictures();
+        //startGetStarted();
+        startCamera();
+    }
+
+    private void startCamera(){
+        setContentView(R.layout.activity_secondary_camera);
+        //Initialize the Camera Variables & Listeners
+        //Set Images Here Specifically
+        //Now Set Visibility
+        //Now Set Title of Image
+
+
+        surfaceView = (SurfaceView) findViewById(R.id.surfaceview);
+        capture_image = (Button) findViewById(R.id.capture_image);
+        capture_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                capture();
+            }
+        });
+        surfaceHolder = surfaceView.getHolder();
+        surfaceHolder.addCallback(SecondaryCamera.this);
+        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        try {
+            mCamera = Camera.open();
+            mCamera.setPreviewDisplay(surfaceHolder);
+            mCamera.startPreview();
+        } catch (IOException e) {
+            //Jump to Home
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Could Not Open Camera", Toast.LENGTH_LONG);
+            e.printStackTrace();
+        }
+        /**/
+
     }
 
     protected void onDestroy(){
@@ -104,17 +135,16 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
 
 
-
+    /*
     private void setupPictures(){
         OnboardingItem item1 = new OnboardingItem();
         item1.setTitle("Front of Mouth");
-        item1.setImage(R.drawable.tooth1);
+        //item1.setImage(R.drawable.front);
         //item1.setOverlayImage(R.drawable.front);
 
         OnboardingItem item2 = new OnboardingItem();
         //item2.setTitle("Right of Mouth");
         //item2.setImage(R.drawable.right);
-        item2.setImage(R.drawable.tooth1);
 
         item2.setOverlayImage(R.drawable.right);
 
@@ -122,20 +152,16 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         item3.setTitle("Left of Mouth");
         //item3.setImage(R.drawable.left);
         //item3.setOverlayImage(R.drawable.left);
-        item3.setImage(R.drawable.tooth1);
 
         OnboardingItem item4 = new OnboardingItem();
         item4.setTitle("Top of Mouth");
         //item4.setImage(R.drawable.top);
         //item4.setOverlayImage(R.drawable.top);
-        item4.setImage(R.drawable.tooth1);
 
         OnboardingItem item5 = new OnboardingItem();
         item5.setTitle("Bottom of Mouth");
         //item5.setImage(R.drawable.bottom);
         //item5.setOverlayImage(R.drawable.bottom);
-        item5.setImage(R.drawable.tooth1);
-
 
         idealPictures.add(item1);
         idealPictures.add(item2);
@@ -144,7 +170,9 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         idealPictures.add(item5);
 
     }
+     */
 
+    /*
     private void startGetStarted(){
         setContentView(R.layout.time_to_get_started);
         layoutOnboardingIndicators = findViewById(R.id.startedMainIndicators);
@@ -166,6 +194,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
 
     }
+     */
 
     @Override
     public void onBackPressed() {
@@ -189,6 +218,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         builder.show();
     }
 
+    /*
     private void showIdealImage(){
         if (indexOfPictures < idealPictures.size()){
             OnboardingItem nextImage = idealPictures.get(indexOfPictures);
@@ -221,6 +251,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
             });
         }
     }
+    */
 
 
     protected void storeImageAndReturnUrl(int imageNumber){
@@ -352,17 +383,12 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
 
     private void startInterface(){
-        setContentView(R.layout.activity_camera4);
+        setContentView(R.layout.review_secondary_picture);
         //Initialize the Interface Variables & Listeners
         btnCamera = (Button)findViewById(R.id.btnCamera);
         btnContinue = (Button)findViewById(R.id.btnConfirmImage);
         imageView = (ImageView)findViewById(R.id.imageView);
-        originalImage = (ImageView)findViewById(R.id.originalImage);
-
         setNewImage();
-
-        OnboardingItem nextImage = idealPictures.get(indexOfPictures);
-        originalImage.setImageResource(nextImage.getImage());
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -377,79 +403,11 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
             @Override
             public void onClick(View view) {
                 //imageCollection.add(currentPicture);
-                storeImageAndReturnUrl(indexOfPictures);
-                indexOfPictures += 1;
-
-
-                setContentView(R.layout.time_to_get_started);
-                currentPictureInImageView.recycle();
-                currentPictureInImageView = null;
-                startGetStarted();
-                showIdealImage();
-
+                Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
-    }
-
-    private void startCamera(){
-        setContentView(R.layout.activity_camera__capture);
-        //Initialize the Camera Variables & Listeners
-        largeImage = (ImageView) findViewById(R.id.camera_large_overlay);
-        smallImage = (ImageView) findViewById(R.id.camera_small_overlay);
-
-        //Set Images Here Specifically
-
-
-        //Now Set Visibility
-        largeImage.setVisibility(View.GONE);
-        smallImage.setVisibility(View.VISIBLE);
-
-        //Now Set Title of Image
-        OnboardingItem nextImage = idealPictures.get(indexOfPictures);
-        imageLabel = (TextView) findViewById(R.id.camera_top_bar);
-        String label = "Picture " + Integer.valueOf(indexOfPictures + 1) + " of " + Integer.valueOf(idealPictures.size()) + ": " + nextImage.getTitle();
-        imageLabel.setText(label);
-
-        largeImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                smallImage.setVisibility(View.VISIBLE);
-                largeImage.setVisibility(View.GONE);
-            }
-        });
-        smallImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                largeImage.setVisibility(View.VISIBLE);
-                smallImage.setVisibility(View.GONE);
-            }
-        });
-
-
-        surfaceView = (SurfaceView) findViewById(R.id.surfaceview);
-        capture_image = (Button) findViewById(R.id.capture_image);
-        capture_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                capture();
-            }
-        });
-        surfaceHolder = surfaceView.getHolder();
-        surfaceHolder.addCallback(CameraActivity4.this);
-        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        try {
-            mCamera = Camera.open();
-            mCamera.setPreviewDisplay(surfaceHolder);
-            mCamera.startPreview();
-        } catch (IOException e) {
-            //Jump to Home
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            Toast.makeText(getApplicationContext(), "Could Not Open Camera", Toast.LENGTH_LONG);
-            e.printStackTrace();
-        }
-
-
     }
 
 
@@ -460,7 +418,6 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
         currentPictureInImageView = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
         imageView.setImageBitmap(currentPictureInImageView);
-        //originalImage.setImageBitmap(currentPictureInImageView);
         bitmap.recycle();
         scaledBitmap.recycle();
         bitmap = null;
@@ -576,10 +533,6 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
             buttonOnboardingAction.setText("Next");
         }*/
     }
-
-
-
-
 
 
 

@@ -70,8 +70,8 @@
 
     <ImageView
         android:id="@+id/camera_small_overlay"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -85,15 +85,15 @@
         android:background="@color/colorWhite"
         android:clickable="true"
         android:contentDescription="Submit Button"
-        android:src="@drawable/hello"
+        android:src="@drawable/tooth1"
         android:translationZ="90dp" />
 
 
     <ImageView
         android:background="@color/colorWhite"
         android:id="@+id/camera_large_overlay"
-        android:layout_width="300dp"
-        android:layout_height="450dp"
+        android:layout_width="450dp"
+        android:layout_height="300dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -106,7 +106,7 @@
         android:layout_marginBottom="12dp"
         android:contentDescription="Submit Button"
         android:clickable="true"
-        android:src="@drawable/hello"
+        android:src="@drawable/tooth1"
         android:translationZ="91dp" />
 
 </RelativeLayout>

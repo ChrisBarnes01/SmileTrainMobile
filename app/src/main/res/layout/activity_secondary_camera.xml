@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".SecondaryCamera">
 
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -27,15 +28,30 @@
 
 
         <TextView
-            android:background="@color/colorBackground"
-            android:text=""
+            android:background="@color/colorWhite"
+            android:text="Your doctor needs a little more information about your aligners"
             android:id="@+id/camera_top_bar"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
             android:textStyle="bold"
-            android:textColor="@color/colorWhite"
+            android:textColor="#000000"
             android:gravity="left"
-            android:textSize="20sp"
+            android:textSize="28sp"
+            android:paddingLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="top"
+            />
+        <TextView
+            android:background="@color/colorWhite"
+            android:text="Please take a photo of your aligner"
+            android:id="@+id/camera_bottom_bar"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textColor="#000000"
+            android:gravity="left"
+            android:textSize="18sp"
             android:paddingLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,22 +59,12 @@
             android:layout_gravity="top"
             />
 
-        <ImageView
-            android:id="@+id/originalImage"
-            android:layout_weight="9"
-            android:adjustViewBounds="true"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"/>
-
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_weight="9"
-            android:adjustViewBounds="true"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"/>
+        <SurfaceView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/surfaceview"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,32 +72,27 @@
             android:background="@color/colorWhite"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:orientation="horizontal"
             >
 
             <Button
-                android:id="@+id/btnCamera"
+                android:id="@+id/capture_image"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:layout_marginRight="6dp"
-                android:text="Retake Image"
+                android:text="Capture"
                 android:translationZ="90dp" />
 
-            <Button
-                android:id="@+id/btnConfirmImage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:layout_marginLeft="6dp"
-                android:text="Accept Image"
-                android:translationZ="90dp" />
         </LinearLayout>
 
+
+
+
+
+
+
+
     </LinearLayout>
+
 
 </RelativeLayout>

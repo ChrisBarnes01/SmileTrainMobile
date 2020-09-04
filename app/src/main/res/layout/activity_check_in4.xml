@@ -17,7 +17,7 @@
 
         <TextView
             android:background="@color/colorBackground"
-            android:text="Check In Two"
+            android:text="Check In"
             android:id="@+id/top_bar"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
@@ -75,7 +75,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginTop="12dp"
                             android:layout_gravity="center"
-                            android:text="How sore are your teeth? YOOOO?"
+                            android:text="How sore are your teeth?"
                             android:layout_marginBottom="12dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
@@ -175,7 +175,7 @@
                                 android:text="YES"
                                 android:textStyle="bold"
                                 android:textColor="#000000"
-                                android:background="@android:color/transparent"
+                                android:backgroundTint="@android:color/transparent"
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginStart="12dp"
@@ -186,6 +186,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
+                                android:backgroundTint="@android:color/transparent"
+
                                 android:layout_alignParentRight="true"
                                 android:layout_marginEnd="12dp"
                                 android:background="@android:color/transparent"
@@ -218,13 +220,18 @@
         </ScrollView>
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/check_in_button_to_camera"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="12dp"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:layout_weight="1"
-        app:menu="@menu/bottom_navigation_menu" />
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="Next"></Button>
+
 
 </RelativeLayout>

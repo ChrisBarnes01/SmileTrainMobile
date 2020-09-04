@@ -33,10 +33,17 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +52,9 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     LinearLayout layoutCheckInIndicators;
+    String totalUserName;
+    List<Boolean> listOfPreviousCheckins;
+    int DayOfWeek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +73,19 @@ public class MainActivity extends AppCompatActivity {
             runIntroSequence();
         }
 
+
+
+        DayOfWeek = 4;
+        listOfPreviousCheckins = new ArrayList<>(Arrays.asList(true, true, true, true, false, false, false));
+
+
         final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         final TextView numberOfDaysNotification = findViewById(R.id.home_day_reminder_card_text);
         final Button checkInButton = findViewById(R.id.home_check_in_card_button);
         final TextView dayOfWeekLabel = findViewById(R.id.homepage_day_of_week_label);
         final TextView monthYearLabel = findViewById(R.id.homepage_month_and_year_label);
         final TextView dateLabel = findViewById(R.id.homepage_date_label);
+        final TextView nameLabel = findViewById(R.id.main_activity_title);
         layoutCheckInIndicators = findViewById(R.id.home_check_in_record_view);
 
         Calendar myCalendar = Calendar.getInstance();
@@ -76,6 +93,27 @@ public class MainActivity extends AppCompatActivity {
         monthYearLabel.setText(myCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + myCalendar.get(Calendar.YEAR));
         Date date = new Date();
         dateLabel.setText((String) DateFormat.format("dd",   date));
+
+
+
+        //Now Get User Data from Server!
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("patients");
+        mDatabase.child("userId").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                //Toast.makeText(getApplicationContext(), user.firstName, Toast.LENGTH_SHORT).show();
+                totalUserName = user.firstName + " " + user.lastName;
+                nameLabel.setText(totalUserName);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
+
 
 
 
@@ -280,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("firstStart", false);
         editor.apply();
 
-        Intent intent = new Intent(getApplicationContext(), IntroductorySequence.class);
+        Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
         overridePendingTransition(0, 0);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
@@ -343,13 +381,25 @@ public class MainActivity extends AppCompatActivity {
 
             //Now, add the appropriate Drawable Image
             ImageView imageToBeAdded = new ImageView(getApplicationContext());
-            imageToBeAdded.setImageDrawable(ContextCompat.getDrawable(
-                    getApplicationContext(),
-                    R.drawable.circle_with_checkmark
-            ));
-            imageToBeAdded.setPadding(5, 10, 5, 0);
-            imageToBeAdded.setMaxHeight(10);
-            imageToBeAdded.setMaxWidth(10);
+
+            if (listOfPreviousCheckins.get(i) == true){
+                imageToBeAdded.setImageDrawable(ContextCompat.getDrawable(
+                        getApplicationContext(),
+                        R.drawable.circle_with_checkmark
+                ));
+                imageToBeAdded.setPadding(5, 10, 5, 0);
+                imageToBeAdded.setMaxHeight(10);
+                imageToBeAdded.setMaxWidth(10);
+            }
+            else{
+                imageToBeAdded.setImageDrawable(ContextCompat.getDrawable(
+                        getApplicationContext(),
+                        R.drawable.open_circle_indicator
+                ));
+                imageToBeAdded.setPadding(5, 10, 5, 0);
+                imageToBeAdded.setMaxHeight(10);
+                imageToBeAdded.setMaxWidth(10);
+            }
 
             layoutEntry.addView(imageToBeAdded);
 
@@ -360,38 +410,14 @@ public class MainActivity extends AppCompatActivity {
             layoutEntry.addView(dayOfWeek);
 
 
-            //layoutEntry.setBackgroundResource(R.drawable.border_background);
+            if (i == DayOfWeek){
+                layoutEntry.setBackgroundResource(R.drawable.border_background);
+            }
             //Add New Linear View to Overall View
             layoutEntry.setLayoutParams(layoutParams);
             layoutCheckInIndicators.addView(layoutEntry);
         }
     }
-
-    /*
-    private void setCurrentCheckInRecordIndicator(int index){
-        int childCount = layoutCheckInIndicators.getChildCount();
-        for (int i = 0; i < childCount; i++){
-            ImageView imageView = (ImageView)layoutCheckInIndicators.getChildAt(i);
-            if (i == index){
-                imageView.setImageDrawable(
-                        ContextCompat.getDrawable(getApplicationContext(),R.drawable.onboarding_indicator_active)
-                );
-            }
-            else{
-                imageView.setImageDrawable(
-                        ContextCompat.getDrawable(getApplicationContext(),R.drawable.onboarding_indicator_inactive)
-                );
-            }
-        }
-
-        if (index == onboardingAdapter.getItemCount()-1){
-            buttonOnboardingAction.setText("Start");
-        }
-        else{
-            buttonOnboardingAction.setText("Next");
-        }
-    }
-*/
 
 }
 

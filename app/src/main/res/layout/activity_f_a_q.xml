@@ -23,7 +23,7 @@
             android:paddingBottom="20dp"
             android:textStyle="bold"
             android:textColor="@color/colorWhite"
-            android:gravity="center_horizontal"
+            android:paddingLeft="12dp"
             android:textSize="30sp"
 
             android:layout_width="match_parent"
@@ -48,27 +48,27 @@
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:actionText="FUNK DAT"
+                app:actionText="Action"
                 app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
                 app:titleText="Question??" />
 
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:actionText="FUNK DAT"
+                app:actionText="Action"
                 app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
-                app:titleText="Question?? UGH TWO??" />
+                app:titleText="Question Two" />
 
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:actionText="FUNK DAT"
+                app:actionText="Action"
                 app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
                 app:titleText="Question Three" />
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:actionText="FUNK DAT"
+                app:actionText="Action"
                 app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
                 app:titleText="Question Four" />
 
