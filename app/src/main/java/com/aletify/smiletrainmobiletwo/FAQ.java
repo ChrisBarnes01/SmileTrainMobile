@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.transition.AutoTransition;
+import androidx.transition.Fade;
 import androidx.transition.TransitionManager;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Transition;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +32,7 @@ public class FAQ extends AppCompatActivity {
         arrowBtn = findViewById(R.id.dropdown_arrow_sign);
         cardView = findViewById(R.id.dropdown_cardView);
 
+        
 
     }
 }

@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.hardware.Camera;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +58,12 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
     private ImageView idealImageView;
     private Button buttonStartAction;
     ArrayList<Uri> files;
+
+    //ImageManipulation:
+    private ImageView largeImage;
+    private ImageView smallImage;
+
+    private TextView imageLabel;
 
 
 
@@ -264,6 +273,38 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
     private void startCamera(){
         setContentView(R.layout.activity_camera__capture);
         //Initialize the Camera Variables & Listeners
+        largeImage = (ImageView) findViewById(R.id.camera_large_overlay);
+        smallImage = (ImageView) findViewById(R.id.camera_small_overlay);
+
+        //Set Images Here Specifically
+
+
+        //Now Set Visibility
+        largeImage.setVisibility(View.GONE);
+        smallImage.setVisibility(View.VISIBLE);
+
+        //Now Set Title of Image
+        OnboardingItem nextImage = idealPictures.get(indexOfPictures);
+        imageLabel = (TextView) findViewById(R.id.camera_top_bar);
+        String label = "Picture " + Integer.valueOf(indexOfPictures + 1) + " of " + Integer.valueOf(idealPictures.size()) + ": " + nextImage.getTitle();
+        imageLabel.setText(label);
+
+        largeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                smallImage.setVisibility(View.VISIBLE);
+                largeImage.setVisibility(View.GONE);
+            }
+        });
+        smallImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                largeImage.setVisibility(View.VISIBLE);
+                smallImage.setVisibility(View.GONE);
+            }
+        });
+
+
         surfaceView = (SurfaceView) findViewById(R.id.surfaceview);
         capture_image = (Button) findViewById(R.id.capture_image);
         capture_image.setOnClickListener(new View.OnClickListener() {
@@ -280,8 +321,14 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
             mCamera.setPreviewDisplay(surfaceHolder);
             mCamera.startPreview();
         } catch (IOException e) {
+            //Jump to Home
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Could Not Open Camera", Toast.LENGTH_LONG);
             e.printStackTrace();
         }
+
+
     }
 
 

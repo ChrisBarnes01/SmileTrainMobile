@@ -1,24 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/camera_layout_background"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".CameraActivity4"> >
+    tools:context=".CameraActivity4">
 
-    <SurfaceView
-        android:id="@+id/surfaceview"
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_weight="100"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="100">
+
+
+        <TextView
+            android:background="@color/colorBackground"
+            android:text=""
+            android:id="@+id/camera_top_bar"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:gravity="left"
+            android:textSize="20sp"
+            android:paddingLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="top"
+            />
+
+
+        <SurfaceView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/surfaceview"
+            />
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/capture_image"
-        android:layout_width="fill_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="25dp"
         android:layout_weight="1"
-        android:text="Capture" />
+        android:text="Capture"
+        android:translationZ="90dp" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/camera_small_overlay"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:contentDescription="Submit Button"
+        android:src="@drawable/hello"
+        android:translationZ="90dp" />
+
+
+    <ImageView
+        android:background="@color/colorWhite"
+        android:id="@+id/camera_large_overlay"
+        android:layout_width="300dp"
+        android:layout_height="450dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="Submit Button"
+        android:clickable="true"
+        android:src="@drawable/hello"
+        android:translationZ="91dp" />
+
+</RelativeLayout>
 
 

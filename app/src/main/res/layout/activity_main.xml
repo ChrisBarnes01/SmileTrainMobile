@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
+            app:fontFamily="serif"
             android:text="Good Morning,"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toTopOf="@+id/desc"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
-            android:text="Victoria Smith"
+            android:text="Victoria Smith The Second"
             android:textColor="@color/colorWhite"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -103,39 +104,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="24dp"
+                android:orientation="horizontal"
+                android:weightSum="4"
                 android:paddingBottom="24dp">
-
-                <Button
-                    android:id="@+id/home_check_in_card_button"
-                    android:layout_width="147dp"
-                    android:layout_height="61dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
-                    android:text="Check In"
-                    app:layout_constraintBottom_toBottomOf="@id/dropdown_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/dropdown_title"
                     style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="208dp"
-                    android:layout_height="54dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginEnd="12dp"
                     android:text="How Are you Feeling Today?"
-                    app:layout_constraintEnd_toStartOf="@+id/home_check_in_card_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                     />
+                <Button
+                    android:id="@+id/home_check_in_card_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Check In"
+                    android:layout_weight="3"
+                   />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
+        <!--Second Card!!-->
         <androidx.cardview.widget.CardView
             android:id="@+id/home_calendar_card"
             style="@style/CardView.Light"
@@ -152,38 +160,123 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="24dp"
-                android:paddingBottom="24dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/home_calendar_button"
-                    android:layout_width="147dp"
-                    android:layout_height="61dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
-                    android:text="Check In"
-                    app:layout_constraintBottom_toBottomOf="@id/home_calendar_text_1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/first_level"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="2dp">
 
-                <TextView
-                    android:id="@+id/home_calendar_text_1"
-                    style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="208dp"
-                    android:layout_height="54dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:text="How Are you Feeling Today?"
-                    app:layout_constraintEnd_toStartOf="@+id/home_calendar_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                        android:id="@+id/first_level_left"
+                        android:layout_width="147dp"
+                        android:layout_height="61dp"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical"
+                        android:layout_marginRight="12dp"
+                        app:layout_constraintBottom_toBottomOf="@id/homepage_date_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        >
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="Wednesday"
+                            android:id="@+id/homepage_day_of_week_label"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="August 2020"
+                            android:id="@+id/homepage_month_and_year_label"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/homepage_date_label"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:textSize="50sp"
+                        android:textColor="@color/colorBackground"
+                        android:text="24th"
+                        app:layout_constraintEnd_toStartOf="@+id/first_level_left"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/mid_level"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:id="@+id/home_calendar_appointment_label"
+                        android:layout_width="147dp"
+                        android:layout_height="61dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:text="Upcoming Appointment in 3 days, August 27"
+                        app:layout_constraintBottom_toBottomOf="@id/home_calendar_image"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/home_calendar_image"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="50dp"
+                        android:layout_height="54dp"
+                        android:layout_marginStart="12dp"
+                        android:tint="@color/colorPrimary"
+                        android:layout_marginLeft="12dp"
+                        android:src="@drawable/ic_baseline_perm_contact_calendar_24"
+                        app:layout_constraintEnd_toStartOf="@+id/home_calendar_appointment_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/home_check_in_record_view"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="24dp"
+                    android:weightSum="7"
+                    >
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/home_day_reminder_card"
@@ -211,7 +304,8 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
-                android:text="There are X number of days until your account?"
+                android:layout_marginEnd="3dp"
+                android:layout_marginRight="3dp"
                 app:layout_constraintEnd_toStartOf="@+id/home_check_in_card_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
