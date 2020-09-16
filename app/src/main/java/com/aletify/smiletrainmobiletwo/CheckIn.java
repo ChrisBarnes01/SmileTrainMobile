@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +30,8 @@ public class CheckIn extends AppCompatActivity {
     TextView healthquestion;
     RatingBar ratingBar;
     Button checkinButton;
-
+    ToggleButton toggle1;
+    ToggleButton toggle2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,12 @@ public class CheckIn extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         healthquestion.setText(questions.get(index));
         checkinButton = findViewById(R.id.checkInButton);
+        toggle1 = findViewById(R.id.simpleToggleButton1);
+        toggle1.setText("Hello");
+
+
+
+        toggle2 = findViewById(R.id.simpleToggleButton2);
         checkinButton.setText("Confirm");
 
 
@@ -117,6 +126,34 @@ public class CheckIn extends AppCompatActivity {
 
             }
         });
+
+
+
+        toggle1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(getApplicationContext(), "Toggle1 Clicked", Toast.LENGTH_LONG).show();
+                    toggle2.setChecked(false);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Toggle1 Unclicked", Toast.LENGTH_LONG).show();
+                    // The toggle is disabled
+                }
+            }
+        });
+        toggle2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(getApplicationContext(), "Toggle2 Clicked", Toast.LENGTH_LONG).show();
+                    toggle1.setChecked(false);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Toggle2 Unclicked", Toast.LENGTH_LONG).show();
+                    // The toggle is disabled
+                }
+            }
+        });
+
+
+
     }
 
     protected void changeToManageHealth(){

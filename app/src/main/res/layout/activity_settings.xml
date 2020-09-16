@@ -45,164 +45,22 @@
                 tools:context=".MainActivity">
 
 
-                <!--Check In Card-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/slider_check_in_demo"
-                    style="@style/CardView.Light"
-                    android:elevation="8dp"
+
+                <com.aletify.smiletrainmobiletwo.DropdownView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:paddingBottom="50dp"
-                    android:layout_marginEnd="16dp"
-                    app:cardCornerRadius="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:actionText="Action"
+                    app:messageText="TextInput for Password"
+                    app:titleText="Update Password" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.AppCompat.Title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:layout_gravity="center"
-                            android:text="How sore are your teeth? YOOOO?"
-                            android:layout_marginBottom="12dp"
-                            android:layout_marginEnd="3dp"
-                            android:layout_marginRight="3dp"
-                            app:layout_constraintEnd_toStartOf="@+id/home_check_in_card_button"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <SeekBar
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="12dp"
-                            android:thumbTint="@color/colorPrimary"
-                            android:progressTint="@color/colorPrimary">
-                            >
-                        </SeekBar>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Not Sore"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_marginStart="12dp"
-                                android:layout_marginLeft="12dp"
-                                />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginEnd="12dp"
-                                android:layout_marginRight="12dp"
-                                android:text="Very Sore" />
-
-                        </RelativeLayout>
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-
-                <!--Yes No Card-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/yes_no_card"
-                    style="@style/CardView.Light"
-                    android:elevation="8dp"
+                <com.aletify.smiletrainmobiletwo.DropdownView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:paddingBottom="50dp"
-                    android:layout_marginEnd="16dp"
-                    app:cardCornerRadius="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.AppCompat.Title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:layout_gravity="center"
-                            android:text="Are Your Teeth Or Gums Sore?"
-                            android:layout_marginBottom="12dp"
-                            android:layout_marginEnd="3dp"
-                            android:layout_marginRight="3dp"
-                            app:layout_constraintEnd_toStartOf="@+id/home_check_in_card_button"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    app:actionText="Action"
+                    app:messageText="Text Input for FirstName/LastName"
+                    app:titleText="Update Username" />
 
 
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="12dp">
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="YES"
-                                android:textStyle="bold"
-                                android:textColor="#000000"
-                                android:background="@android:color/transparent"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_marginStart="12dp"
-                                android:layout_marginLeft="12dp"
-                                />
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginEnd="12dp"
-                                android:background="@android:color/transparent"
-                                android:textColor="#000000"
-                                android:textStyle="bold"
-                                android:layout_marginRight="12dp"
-                                android:text="NO" />
-
-                        </RelativeLayout>
-
-
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
 
 
 

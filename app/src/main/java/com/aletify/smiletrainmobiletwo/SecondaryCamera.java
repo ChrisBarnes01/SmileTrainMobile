@@ -80,7 +80,6 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         idealPictures = new ArrayList<>();
         imageCollection = new ArrayList<>();
         files = new ArrayList<Uri>();

@@ -5,15 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorWhite"
     tools:context=".CameraActivity4">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="Time To Take Pictures"
+        android:textColor="#000000"
+        android:text="We're Done!"
         android:textSize="35sp"
         android:gravity="center_horizontal"
         android:textStyle="bold"
@@ -27,11 +27,11 @@
         android:id="@+id/startingTextSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="22sp"
         android:layout_marginBottom="70dp"
         android:gravity="center_horizontal"
-        android:text="Lets get started"
+        android:text="Upload Your Images."
         app:layout_constraintBottom_toTopOf="@+id/startingImage"
         app:layout_constraintEnd_toEndOf="@+id/mainViewPager"
         app:layout_constraintStart_toStartOf="@+id/mainViewPager" />

@@ -31,6 +31,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayout layoutCheckInIndicators;
     String totalUserName;
+    List<CalendarObject> myAppointments;
     List<Boolean> listOfPreviousCheckins;
     int DayOfWeek;
 
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
+        boolean loggedIn = prefs.getBoolean("LoggedIn", false);
+
 
         //JUMP TO CREATE_ACCOUNT PAGE
         //DELETE THIS LATER
@@ -72,61 +76,137 @@ public class MainActivity extends AppCompatActivity {
         if (firstStart){
             runIntroSequence();
         }
+        if (!loggedIn){
+            runIntroSequence();
+        }
+        else{
+
+            Calendar calendar = Calendar.getInstance();
+
+            DayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) -1;
+            listOfPreviousCheckins = new ArrayList<>(Arrays.asList(false, false, false, false, false, false, false));
+
+
+            final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            final TextView numberOfDaysNotification = findViewById(R.id.home_day_reminder_card_text);
+            final Button checkInButton = findViewById(R.id.home_check_in_card_button);
+            final TextView dayOfWeekLabel = findViewById(R.id.homepage_day_of_week_label);
+            final TextView monthYearLabel = findViewById(R.id.homepage_month_and_year_label);
+            final TextView dateLabel = findViewById(R.id.homepage_date_label);
+            final TextView nameLabel = findViewById(R.id.main_activity_title);
+            layoutCheckInIndicators = findViewById(R.id.home_check_in_record_view);
+
+            Calendar myCalendar = Calendar.getInstance();
+            dayOfWeekLabel.setText(myCalendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()));//myCalendar.get(Calendar.DAY_OF_WEEK));
+            monthYearLabel.setText(myCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + myCalendar.get(Calendar.YEAR));
+            Date date = new Date();
+            dateLabel.setText((String) DateFormat.format("dd",   date));
+
+
+            String username = prefs.getString("username", "userId");
+
+            //Now Get User Data from Server!
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("patients");
+            mDatabase.child(username).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    User user = dataSnapshot.getValue(User.class);
+                    //Toast.makeText(getApplicationContext(), user.firstName, Toast.LENGTH_SHORT).show();
+                    totalUserName = user.firstName + " " + user.lastName;
+                    myAppointments = user.calendarObjectList;
+
+                    //SET NUMBER OF DAYS UNTIL PICTURE SENT IN APPOINTMENT
+                    Calendar calendar = Calendar.getInstance();
+                    int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+
+                    int nextPhotosDueDate = getNextPhotoDueDate();
+                    int numberOfDaysUntilCheckIn = nextPhotosDueDate - dayOfYear;
+
+                    String first = Integer.valueOf(numberOfDaysUntilCheckIn) + " Days";
+                    String next = ", until you will need to send in your new aligner photos";
+
+                    numberOfDaysNotification.setText(first + next, TextView.BufferType.SPANNABLE);
+                    Spannable s = (Spannable)numberOfDaysNotification.getText();
+                    int start = 0;
+                    int end = first.length();
+                    s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+                    //SET NUMBER OF DAYS UNTIL PHYSICAL APPOINTMENT
+                    TextView physicalAppointmentLabel = findViewById(R.id.home_calendar_appointment_label);
+                    int nextAppointmentDate = getNextAppointmentDate();
+                    int numberOfDaysUntilAppointment = nextAppointmentDate - dayOfYear;
+
+
+                    if (numberOfDaysUntilAppointment == 0){
+                        String firstAppointmentString = "Your next appointment is ";
+                        String nextAppointmentString = "today.";
+
+                        physicalAppointmentLabel.setText(firstAppointmentString + nextAppointmentString, TextView.BufferType.SPANNABLE);
+                        Spannable sAppointment = (Spannable)physicalAppointmentLabel.getText();
+                        int startAppointment = firstAppointmentString.length();
+                        int endAppointment = firstAppointmentString.length() + nextAppointmentString.length();
+                        sAppointment.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), startAppointment, endAppointment, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+                    else{
+                        physicalAppointmentLabel.setText("Upcoming Appointment in " + numberOfDaysUntilAppointment + " days.");
+                    }
+
+
+                    nameLabel.setText(totalUserName);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                }
+            });
 
 
 
-        DayOfWeek = 4;
-        listOfPreviousCheckins = new ArrayList<>(Arrays.asList(true, true, true, true, false, false, false));
 
 
-        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        final TextView numberOfDaysNotification = findViewById(R.id.home_day_reminder_card_text);
-        final Button checkInButton = findViewById(R.id.home_check_in_card_button);
-        final TextView dayOfWeekLabel = findViewById(R.id.homepage_day_of_week_label);
-        final TextView monthYearLabel = findViewById(R.id.homepage_month_and_year_label);
-        final TextView dateLabel = findViewById(R.id.homepage_date_label);
-        final TextView nameLabel = findViewById(R.id.main_activity_title);
-        layoutCheckInIndicators = findViewById(R.id.home_check_in_record_view);
-
-        Calendar myCalendar = Calendar.getInstance();
-        dayOfWeekLabel.setText(myCalendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()));//myCalendar.get(Calendar.DAY_OF_WEEK));
-        monthYearLabel.setText(myCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + myCalendar.get(Calendar.YEAR));
-        Date date = new Date();
-        dateLabel.setText((String) DateFormat.format("dd",   date));
+            getPermissions();
+            setupCheckInRecordIndicators();
 
 
+            checkInButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    runHealthCheck();
+                }
+            });
 
-        //Now Get User Data from Server!
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("patients");
-        mDatabase.child("userId").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                //Toast.makeText(getApplicationContext(), user.firstName, Toast.LENGTH_SHORT).show();
-                totalUserName = user.firstName + " " + user.lastName;
-                nameLabel.setText(totalUserName);
-            }
+            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    item.setCheckable(true);
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-            }
-        });
+                    switch (item.getItemId()) {
+                        case R.id.home_page_nav: {
+                            Toast.makeText(getApplicationContext(), "Home!", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                        case R.id.camera_page_nav: {
+                            runCamera();
+                        }
+                        break;
+                        case R.id.info_page_nav: {
+                            runFAQ();
+                        }
+                        break;
+                        case R.id.settings_page_nav: {
+                            runSettings();
+                        }
+                        break;
+                    }
+                    return true;
+                }
+            });
+
+        }
 
 
-
-
-
-        getPermissions();
-        setupCheckInRecordIndicators();
-
-
-        checkInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                runHealthCheck();
-            }
-        });
 
         /*
         final CardView camera = findViewById(R.id.camera);
@@ -204,45 +284,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
          */
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                item.setCheckable(true);
 
-                switch (item.getItemId()) {
-                    case R.id.home_page_nav: {
-                        Toast.makeText(getApplicationContext(), "Home!", Toast.LENGTH_SHORT).show();
-                    }
-                    break;
-                    case R.id.camera_page_nav: {
-                        runCamera();
-                    }
-                    break;
-                    case R.id.info_page_nav: {
-                        runFAQ();
-                    }
-                    break;
-                    case R.id.settings_page_nav: {
-                        runSettings();
-                    }
-                    break;
-                }
-                return true;
-            }
-        });
 
         //Set The Text for number of days, and the right card:
 
-        int numberOfDaysUntilCheckIn = 2;
 
-        String first = Integer.valueOf(numberOfDaysUntilCheckIn) + " Days";
-        String next = ", until you will need to send in your new aligner photos";
 
-        numberOfDaysNotification.setText(first + next, TextView.BufferType.SPANNABLE);
-        Spannable s = (Spannable)numberOfDaysNotification.getText();
-        int start = 0;
-        int end = first.length();
-        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 
 
@@ -253,6 +300,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    private int getNextAppointmentDate(){
+        int earliestApointmentDate = Integer.MAX_VALUE;
+
+        for (int i = 0; i < myAppointments.size(); i++){
+            int date = Integer.valueOf(myAppointments.get(i).appointment_date);
+            if (myAppointments.get(i).appointment_type == CalendarObject.PHYSICAL_APPOINTMENT){
+                if (date < earliestApointmentDate){
+                    earliestApointmentDate = date;
+                }
+            }
+        };
+        return earliestApointmentDate;
+    };
+
+    private int getNextPhotoDueDate(){
+        int earliestApointmentDate = Integer.MAX_VALUE;
+
+        for (int i = 0; i < myAppointments.size(); i++){
+            int date = Integer.valueOf(myAppointments.get(i).appointment_date);
+            if (myAppointments.get(i).appointment_type == CalendarObject.PICTURES_DUE){
+                if (date < earliestApointmentDate){
+                    earliestApointmentDate = date;
+                }
+            }
+        };
+        return earliestApointmentDate;
+    };
+
+
 
     private boolean permissionsGranted(){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
@@ -289,7 +367,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "You Must Grant Permissions to use Camera", Toast.LENGTH_SHORT);
         }
         else{
-            Intent intent = new Intent(getApplicationContext(), CameraActivity4.class);
+            //Intent intent = new Intent(getApplicationContext(), PrePhotoAlignerCheckin.class);
+            Intent intent = new Intent(getApplicationContext(), MainSequence.class);
+
             startActivity(intent);
         }
 
@@ -302,7 +382,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void runFAQ(){
 
-        Intent intent = new Intent(getApplicationContext(), FAQ.class);
+        Class<FAQ> myClass = FAQ.class;
+        Intent intent = new Intent(getApplicationContext(), myClass);
         startActivity(intent);
 
     }
@@ -360,7 +441,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setupCheckInRecordIndicators(){
-        String[] daysOfWeek = {"L", "M", "M", "J", "V", "S", "D"};
+        String[] daysOfWeek = {"D","L", "M", "M", "J", "V", "S" };
         LinearLayout[] indicators = new LinearLayout[daysOfWeek.length];
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
@@ -369,8 +450,6 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.weight = 1;
 
         //ImageView[] indicators = new ImageView[7];
-
-
 
         for (int i = 0; i < daysOfWeek.length; i++){
             //Create New Layout, then add a new ImageView and TextView

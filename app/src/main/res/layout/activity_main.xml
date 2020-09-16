@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
-            app:fontFamily="serif"
             android:text="Good Morning,"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toTopOf="@+id/main_activity_title"
@@ -69,7 +69,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
@@ -81,7 +81,10 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginRight="0dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
@@ -117,7 +120,7 @@
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:layout_marginLeft="12dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginRight="12dp"
@@ -127,14 +130,16 @@
                 <Button
                     android:id="@+id/home_check_in_card_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="0dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
                     android:background="@color/colorPrimary"
                     android:text="Check In"
-                    android:layout_weight="3"
+                    android:maxLines="2"
+                    android:scrollHorizontally="false"
+                    android:layout_weight="1"
                    />
 
 
@@ -253,7 +258,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginStart="30dp"
                         android:textSize="16dp"
-                        android:text="Upcoming Appointment in 3 days, August 27"
+                        android:text=""
                         app:layout_constraintBottom_toBottomOf="@id/home_calendar_image"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -329,6 +334,7 @@
 
 
     </LinearLayout>
+    </ScrollView>
 
 
 
@@ -344,404 +350,3 @@
         app:menu="@menu/bottom_navigation_menu" />
 </RelativeLayout>
 
-
-<!--androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="#E5E5E5"
-    android:layout_height="match_parent">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/home_total_background"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:id="@+id/name"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:text="Victoria Smith"
-            app:layout_constraintBottom_toTopOf="@+id/desc"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/view" />
-
-        <TextView
-            android:id="@+id/desc"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:text="Work"
-            android:textColor="#8A000000"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/view"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="16dp"
-
-            android:elevation="12dp"
-            app:cardCornerRadius="25dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-            <ImageView
-                android:id="@+id/circleImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/hello" />
-
-        </androidx.cardview.widget.CardView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorBackground"
-    tools:context=".MainActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello!"
-            />
-
-        <com.aletify.smiletrainmobiletwo.CustomView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:artistText="Artist Name"
-            app:trackText="TrackName"
-            app:buyButton="Buy NOW!"
-            />
-
-        <RelativeLayout
-            android:layout_marginTop="32dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp">
-
-            <TextView
-                android:id="@+id/mainText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:text="Welcome"/>
-
-            <TextView
-                android:layout_marginTop="6dp"
-                android:layout_below="@id/mainText"
-                android:id="@+id/subtitleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="34sp"
-                android:textColor="@color/colorBackground"
-                android:text="User Name"/>
-
-
-            <ImageView
-                android:layout_alignParentRight="true"
-                android:layout_width="62dp"
-                android:layout_height="62dp"
-                android:id="@+id/userProfilePic"
-                android:src="@drawable/camera_capture" />
-        </RelativeLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#FFFFFF"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="12dp"
-            android:textSize="22sp"
-            android:text="How are you today?"
-            />
-
-        <RatingBar
-            android:layout_width="264dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/ratingBarLink"
-            android:clickable="true"
-            android:numStars="5"
-            android:padding="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#FFFFFF"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="12dp"
-            android:textSize="22sp"
-            android:text="Other Activities"
-            />
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:padding="14dp"
-            android:alignmentMode="alignBounds"
-            android:columnOrderPreserved="true"
-            android:layout_height="wrap_content">
-            <- Row 1 -->
-
-            <!-- Column 1 -->
-            <!--androidx.cardview.widget.CardView
-                android:id="@+id/camera_flow"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/colorAccent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                android:clickable="true"
-                android:layout_columnWeight="0"
-                android:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <-ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/pokemonollymoss" /-->
-
-                    <!--TextView
-                        android:id="@+id/frstText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Camera Sequence"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:gravity="center_horizontal" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/camera"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/colorAccent"
-                android:clickable="true"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                android:layout_columnWeight="0"
-                android:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <-ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/trianles" /-->
-
-                    <!--TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Camera"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:gravity="center_horizontal" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:padding="14dp"
-            android:alignmentMode="alignBounds"
-            android:columnOrderPreserved="true"
-            android:layout_height="wrap_content">
-            <- Row 1 -->
-
-            <!-- Column 1 -->
-            <!--androidx.cardview.widget.CardView
-                android:id="@+id/camera_flow"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/colorAccent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                android:clickable="true"
-                android:layout_columnWeight="0"
-                android:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <-ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/pokemonollymoss" /-->
-
-                    <!--TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Calendar"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:gravity="center_horizontal" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/introduction"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/colorAccent"
-                android:clickable="true"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                android:layout_columnWeight="0"
-                android:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <-ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/trianles" /-->
-
-                    <!--TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rewatch Introduction"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:gravity="center_horizontal" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-        </GridLayout>
-
-
-
-
-        <GridLayout
-            android:id="@+id/mainGrid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="14dp"
-            android:alignmentMode="alignBounds"
-            android:columnCount="3"
-            android:columnOrderPreserved="true"
-            android:rowCount="1">
-
-
-
-        </GridLayout-->
-
-
-    <!--/LinearLayout>
-
-</ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        app:menu="@menu/bottom_navigation_menu" />
-
-</RelativeLayout-->

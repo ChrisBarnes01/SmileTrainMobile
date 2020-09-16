@@ -1,6 +1,7 @@
 package com.aletify.smiletrainmobiletwo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -152,7 +153,8 @@ public class CreateAccount extends AppCompatActivity {
                     EditText username = (EditText) findViewById(R.id.input1CreateAccount);
                     EditText password = (EditText) findViewById(R.id.input2CreateAccount);
 
-                    final String usernameString = username.getText().toString();
+                    final String usernameInput = username.getText().toString();
+                    final String usernameString =  usernameInput + "@test.com";
                     final String passwordString = password.getText().toString();
 
                     try {
@@ -161,7 +163,7 @@ public class CreateAccount extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_LONG).show();
-                                    globalUsername = usernameString;
+                                    globalUsername = usernameInput;
                                     globalPassword = passwordString;
 
                                     if(createAccountViewPager.getCurrentItem() + 1 < createAccountAdapter.getItemCount()){
@@ -191,7 +193,7 @@ public class CreateAccount extends AppCompatActivity {
                     final String firstPasswordString = firstPassword.getText().toString();
                     final String secondPasswordString = secondPassword.getText().toString();
 
-                    AuthCredential credential = EmailAuthProvider.getCredential(globalUsername, globalPassword);
+                    AuthCredential credential = EmailAuthProvider.getCredential(globalUsername + "@test.com", globalPassword);
 
                     if (firstPasswordString.length() < 6){
                         Toast.makeText(getApplicationContext(), "Passwords Must Have At Least 6 Characters", Toast.LENGTH_LONG).show();
@@ -248,13 +250,42 @@ public class CreateAccount extends AppCompatActivity {
                     final String lastNameString = lastName.getText().toString();
                     final String whatsAppNumberString = whatsAppNumber.getText().toString();
 
+                    //Mock Dates
+                    List<CalendarObject> calendarObjectList = new ArrayList<>();
+
+
+                    //1 Calendar Object
+
+                    CalendarObject object1 = new CalendarObject(CalendarObject.PHYSICAL_APPOINTMENT, "260");
+
+                    //2 Calendar Object 2
+                    CalendarObject object2 = new CalendarObject(CalendarObject.PICTURES_DUE, "261");
+
+                    //Calendar Object 3
+                    CalendarObject object3 = new CalendarObject(CalendarObject.PHYSICAL_APPOINTMENT, "280");
+
+                    calendarObjectList.add(object1);
+                    calendarObjectList.add(object2);
+                    calendarObjectList.add(object3);
+
+
                     if (firstNameString.length() < 1 || lastNameString.length() < 1 || whatsAppNumber.length() < 1){
                         Toast.makeText(getApplicationContext(), "Please fill out All Parameters", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("patients");
                         User user = new User(globalUsername, firstNameString, lastNameString, whatsAppNumberString);
-                        mDatabase.child("test1").setValue(user);
+                        user.calendarObjectList = calendarObjectList;
+                        mDatabase.child(globalUsername).setValue(user);
+
+
+                        //UPDATE SHARED PREFERENCES
+                        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("username", globalUsername);
+                        editor.apply();
+                        editor.putBoolean("LoggedIn", true);
+                        editor.apply();
 
                         if(createAccountViewPager.getCurrentItem() + 1 < createAccountAdapter.getItemCount()){
                             createAccountViewPager.setCurrentItem(createAccountViewPager.getCurrentItem() + 1);

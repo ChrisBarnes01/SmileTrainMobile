@@ -43,6 +43,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.UUID;
 
 public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.Callback{
@@ -146,23 +147,23 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
     }
 
     private void startGetStarted(){
-        setContentView(R.layout.time_to_get_started);
-        layoutOnboardingIndicators = findViewById(R.id.startedMainIndicators);
-        startingTitle = findViewById(R.id.startingTextMain);
-        startingSubtitle = findViewById(R.id.startingTextSubtitle);
-        idealImageView = findViewById(R.id.startingImage);
+        setContentView(R.layout.picture_full_view);
+        //layoutOnboardingIndicators = findViewById(R.id.startedMainIndicators);
+        //startingTitle = findViewById(R.id.startingTextMain);
+        //startingSubtitle = findViewById(R.id.startingTextSubtitle);
+        //idealImageView = findViewById(R.id.startingImage);
 
-        idealImageView.setImageResource(R.drawable.camera_capture);
+        //idealImageView.setImageResource(R.drawable.camera_capture);
         buttonStartAction = findViewById(R.id.buttonStartAction);
         buttonStartAction.setText("Next");
         buttonStartAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showIdealImage();
+                startCamera();
             }
         });
-        setupOnboardingIndicators();
-        setCurrentOnboardingIndicator(indexOfPictures);
+        //setupOnboardingIndicators();
+        //setCurrentOnboardingIndicator(indexOfPictures);
 
 
     }
@@ -225,7 +226,10 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
     protected void storeImageAndReturnUrl(int imageNumber){
         //Bitmap imgBitmap = BitmapFactory.decodeByteArray(currentPicture, 0, currentPicture.length);
-        String imgBitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),currentPictureInImageView,idealPictures.get(imageNumber).getTitle(),null);
+        Random generator = new Random();
+        int n = generator.nextInt();
+        String randomTitle = Integer.toString(n);
+        String imgBitmapPath = MediaStore.Images.Media.insertImage(getContentResolver(),currentPictureInImageView,idealPictures.get(imageNumber).getTitle() + randomTitle,null);
         Uri imgBitmapUri = Uri.parse(imgBitmapPath);
         files.add(imgBitmapUri);
     }
@@ -380,12 +384,29 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
                 storeImageAndReturnUrl(indexOfPictures);
                 indexOfPictures += 1;
 
+                if (indexOfPictures < idealPictures.size()){
+                    setContentView(R.layout.time_to_get_started);
+                    currentPictureInImageView.recycle();
+                    currentPictureInImageView = null;
+                    startGetStarted();
+                    startCamera();
+                }
+                else{
+                    setContentView(R.layout.time_to_get_started);
+                    Button finishButton = findViewById(R.id.buttonStartAction);
+                    finishButton.setText("Submit Images!");
+                    finishButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(getApplicationContext(), "Images Uploaded", Toast.LENGTH_SHORT).show();
+                            Intent goHome = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(goHome);
+                        }
+                    });
 
-                setContentView(R.layout.time_to_get_started);
-                currentPictureInImageView.recycle();
-                currentPictureInImageView = null;
-                startGetStarted();
-                showIdealImage();
+                }
+
+                //showIdealImage();
 
             }
         });

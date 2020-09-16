@@ -17,7 +17,7 @@
 
         <TextView
             android:background="@color/colorBackground"
-            android:text="Most Asked Questions"
+            android:text="Most Asked Questions "
             android:id="@+id/top_bar"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
@@ -49,27 +49,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:actionText="Action"
-                app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
+                app:messageText="Ask A question Here"
                 app:titleText="Question??" />
 
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:actionText="Action"
-                app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
+                app:messageText="Ask A question Here"
                 app:titleText="Question Two" />
 
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:actionText="Action"
-                app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
+                app:messageText="Ask A question Here"
                 app:titleText="Question Three" />
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:actionText="Action"
-                app:messageText="Why is it, that when I develop apps on Android, I have to recompile everytime I make a minor UI change?"
+                app:messageText="Ask A question Here"
                 app:titleText="Question Four" />
 
         </LinearLayout>
