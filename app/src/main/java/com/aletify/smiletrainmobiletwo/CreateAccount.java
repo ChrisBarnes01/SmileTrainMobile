@@ -42,7 +42,6 @@ public class CreateAccount extends AppCompatActivity {
     String globalPassword;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,7 +144,7 @@ public class CreateAccount extends AppCompatActivity {
         }
 
         if (index == 0){
-            buttonOnboardingAction.setText("Next");
+            buttonOnboardingAction.setText("Siguiente");
             buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
@@ -181,7 +180,7 @@ public class CreateAccount extends AppCompatActivity {
             });
         }
         else if (index == 1){
-            buttonOnboardingAction.setText("Next");
+            buttonOnboardingAction.setText("Siguiente");
             buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
@@ -238,7 +237,7 @@ public class CreateAccount extends AppCompatActivity {
 
         }
         else{
-            buttonOnboardingAction.setText("Next");
+            buttonOnboardingAction.setText("Siguiente");
             buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){

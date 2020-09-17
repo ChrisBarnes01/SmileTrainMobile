@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("firstStart", false);
         editor.apply();
 
-        Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+        Intent intent = new Intent(getApplicationContext(), FirstPage.class);
         overridePendingTransition(0, 0);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
