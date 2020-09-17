@@ -17,7 +17,7 @@
 
         <TextView
             android:background="@color/colorBackground"
-            android:text="Settings"
+            android:text="Ajustes"
             android:id="@+id/top_bar"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
@@ -44,22 +44,233 @@
                 android:orientation="vertical"
                 tools:context=".MainActivity">
 
+                <androidx.cardview.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/dropdown_cardView"
+                style="@style/CardView.Light"
+                android:elevation="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:paddingBottom="50dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-
-                <com.aletify.smiletrainmobiletwo.DropdownView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:actionText="Action"
-                    app:messageText="TextInput for Password"
-                    app:titleText="Update Password" />
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp">
 
-                <com.aletify.smiletrainmobiletwo.DropdownView
+                    <ImageView
+                        android:id="@+id/dropdown_arrow_sign"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        app:layout_constraintBottom_toBottomOf="@id/dropdown_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/dropdown_title"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Cambiar Primer Nombre y Apellido"
+                        app:layout_constraintEnd_toStartOf="@+id/dropdown_arrow_sign"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <LinearLayout
+                        android:id="@+id/dropdown_expandable_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:paddingBottom="12dp"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dropdown_title">
+
+                        <TextView
+                            android:paddingTop="12dp"
+                            android:id="@+id/inputText1CreateAccount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="Primer Nombre Nuevo"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:id="@+id/input1CreateAccount"
+                            android:layout_width="match_parent"
+                            android:hint="Primer Nombre"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/inputText2CreateAccount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Apellido Nuevo"
+                            android:gravity="left"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/input2CreateAccount"
+                            android:layout_width="match_parent"
+                            android:hint="Apellido"
+
+                            android:layout_height="wrap_content"/>
+
+                        <Button
+                            android:id="@+id/setNewNames"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:textColor="@color/colorWhite"
+                            android:text="Enviar">
+
+                        </Button>
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/dropdown_cardView2"
+                    style="@style/CardView.Light"
+                    android:elevation="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:actionText="Action"
-                    app:messageText="Text Input for FirstName/LastName"
-                    app:titleText="Update Username" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:paddingBottom="50dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="24dp"
+                        android:paddingBottom="24dp">
+
+                        <ImageView
+                            android:id="@+id/dropdown_arrow_sign2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginRight="12dp"
+                            android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
+                            app:layout_constraintBottom_toBottomOf="@id/dropdown_title2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/dropdown_title2"
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:text="Cambiar contraseña"
+                            app:layout_constraintEnd_toStartOf="@+id/dropdown_arrow_sign2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <LinearLayout
+                            android:id="@+id/dropdown_expandable_view2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:paddingBottom="12dp"
+                            android:visibility="gone"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/dropdown_title2">
+
+                            <TextView
+                                android:paddingTop="12dp"
+                                android:id="@+id/inputText1CreateAccount2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="contraseña actual"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:id="@+id/input1CreateAccount2"
+                                android:layout_width="match_parent"
+                                android:hint="contraseña actual"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/inputText2CreateAccount2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="contraseña nuevo"
+                                android:gravity="left"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+
+                            <EditText
+                                android:id="@+id/input2CreateAccount2"
+                                android:layout_width="match_parent"
+                                android:hint="contraseña nuevo"
+                                android:layout_height="wrap_content"/>
+
+                            <Button
+                                android:id="@+id/setNewNames2"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:textColor="@color/colorWhite"
+                                android:text="Enviar">
+
+                            </Button>
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
 
 
 

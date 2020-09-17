@@ -101,6 +101,10 @@ public class DropdownView extends ConstraintLayout {
     }
 
     public void setActionText(CharSequence value) {
-        actionText.setText(value);
+        if (actionText == null){
+            actionText.setVisibility(View.GONE);
+        } else{
+            actionText.setText(value);
+        }
     }
 }

@@ -70,33 +70,36 @@
             android:layout_marginRight="25dp"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:src="@drawable/reference_1"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:background="@drawable/border_background"
                 android:gravity="center"
                 android:text="Image1"/>
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:src="@drawable/reference_2"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:background="@drawable/border_background"
                 android:gravity="center"
                 android:text="Image2"/>
-            <TextView
-                android:layout_width="wrap_content"
+
+            <ImageView
+                android:src="@drawable/reference_3"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:background="@drawable/border_background"
                 android:gravity="center"
                 android:text="Image3"/>
+
+
 
 
         </LinearLayout>
@@ -109,31 +112,31 @@
                 android:layout_marginTop="25dp"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:src="@drawable/reference_4"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/border_background"
                     android:gravity="center"
                     android:text="Image4"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:src="@drawable/reference_5"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/border_background"
                     android:gravity="center"
                     android:text="Image5"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:src="@drawable/reference_6"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/border_background"
                     android:gravity="center"
                     android:text="Image6"/>
 
@@ -147,26 +150,26 @@
                 android:layout_marginTop="25dp"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:src="@drawable/reference_7"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/border_background"
                     android:gravity="center"
                     android:text="Image7"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:src="@drawable/pure_border"
                     android:layout_weight="1"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@drawable/border_background"
                     android:gravity="center"
-                    android:text="Image8"/>
+                    android:text=""/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="12dp"

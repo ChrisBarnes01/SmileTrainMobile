@@ -46,10 +46,9 @@
 
 
         <SurfaceView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
             android:id="@+id/surfaceview"
-            />
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
 
 
     </LinearLayout>
@@ -85,7 +84,7 @@
         android:background="@color/colorWhite"
         android:clickable="true"
         android:contentDescription="Submit Button"
-        android:src="@drawable/tooth1"
+        android:src="@drawable/reference_1"
         android:translationZ="90dp" />
 
 
@@ -106,7 +105,7 @@
         android:layout_marginBottom="12dp"
         android:contentDescription="Submit Button"
         android:clickable="true"
-        android:src="@drawable/tooth1"
+        android:src="@drawable/reference_1"
         android:translationZ="91dp" />
 
 </RelativeLayout>

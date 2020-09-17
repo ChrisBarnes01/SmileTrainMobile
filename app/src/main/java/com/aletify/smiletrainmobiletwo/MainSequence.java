@@ -69,48 +69,30 @@ public class MainSequence extends AppCompatActivity {
         List<OnboardingItem> onboardingItems = new ArrayList<>();
 
         OnboardingItem page1 = new OnboardingItem();
-        page1.setTitle("Para poder tomar fotos nítidas");
-        page1.setDescription("Limpie la lente de la cámara con una tela");
-        //page1.setImage(R.drawable.main1);
+        page1.setDescription("Coloca el alineador e tu mano. Pasa el dedo sobre los bordes del alineador. ¿Sientes algún punto filoso o áspero?");
+        page1.setImage(R.drawable.pre_1);
 
         OnboardingItem page2 = new OnboardingItem();
-        page2.setTitle("Para poder tomar fotos bien iluminadas");
-        page2.setDescription("Sentase detrás de una luz");
-        //page2.setImage(R.drawable.main2);
+        page2.setDescription("Utiliza una lima para las uñas para suavizar la aspereza. Ten cuidado de no limar excesivamente, revisando continuamente con el dedo mientras pules los bordes.");
+        page2.setImage(R.drawable.pre_2);
 
         OnboardingItem page3 = new OnboardingItem();
-        page3.setTitle("Para poder tomar fotos claras");
-        page3.setDescription("Mantener la cara visible. Asegurate: - Amarrarte el pelo");
-        //page3.setImage(R.drawable.main3);
+        page3.setDescription("Colócate el alineador y muerde suavemente el asentador elástico que te entregó tu Doctor. Una vez haya asentado totalmente tu alineador, observa si quedan espacios (por falta de asentamiento) entre el plástico y los bordes de tus dientes. ¿Permanece el espacio, a pesar de morder sobre el asentador elástico?");
+        page3.setImage(R.drawable.pre_3);
 
         OnboardingItem page4 = new OnboardingItem();
-        page4.setTitle("Para poder tomar fotos no borrosas");
-        page4.setDescription("Agarra el cellular cerca de su cuerpo");
-        //page4.setImage(R.drawable.main4);
+        page4.setDescription("Repite el proceso de morder sobre el asentador elástico, en el lugar donde se observa la falta de asentamiento, intentando mejorar el ajuste. No te preocupes si no lo logras fácilmente, a veces requiere varios intentos.");
+        page4.setImage(R.drawable.pre_4);
 
         OnboardingItem page5 = new OnboardingItem();
-        page5.setTitle("Para poder tomar fotos alineadas");
-        page5.setDescription("Agarra el cellular a la altura de su cara");
-        //page5.setImage(R.drawable.main5);
-
-        OnboardingItem page6 = new OnboardingItem();
-        page6.setTitle("Para ver los alineadores");
-        page6.setDescription("Coloque los alineadores superior e inferior");
-        //page6.setImage(R.drawable.main6);
-
-        OnboardingItem page7 = new OnboardingItem();
-        page7.setTitle("Para poder tomar fotos detalladas");
-        page7.setDescription("Coloca los retractores y hace fuerza hacia afuera para que se vea la mayor parte posible de sus dientes");
-        //page7.setImage(R.drawable.main7);
+        page5.setDescription("Aún ves algún desajuste o espacio del alineador? ");
+        page5.setImage(-1111);
 
         onboardingItems.add(page1);
         onboardingItems.add(page2);
         onboardingItems.add(page3);
         onboardingItems.add(page4);
         onboardingItems.add(page5);
-        onboardingItems.add(page6);
-        onboardingItems.add(page7);
-
 
         mainAdapter = new MainSequenceAdapter(onboardingItems);
 

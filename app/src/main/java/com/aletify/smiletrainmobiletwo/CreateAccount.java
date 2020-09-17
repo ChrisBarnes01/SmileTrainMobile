@@ -79,28 +79,28 @@ public class CreateAccount extends AppCompatActivity {
         List<CreateAccountItem> createAccountItems = new ArrayList<>();
 
         CreateAccountItem page1 = new CreateAccountItem();
-        page1.setTitle("Sign Up");
-        page1.setDescription("Use the login credentials your doctor gave you");
-        page1.setInput1("USERNAME");
-        page1.setInput_prefill_1("Username");
-        page1.setInput2("TEMPORARY PASSWORD");
-        page1.setInput_prefill_2("Temporary Password");
+        page1.setTitle("Ingresar");
+        page1.setDescription("Use los detalles que el Dr. le informó para autenticarse");
+        page1.setInput1("USUARIO");
+        page1.setInput_prefill_1("Usuario");
+        page1.setInput2("CONTRASEÑA TEMPORAL");
+        page1.setInput_prefill_2("Contraseña Temporal");
 
         CreateAccountItem page2 = new CreateAccountItem();
-        page2.setTitle("Set Password");
-        page2.setDescription("Please create a new password for your account");
-        page2.setInput1("NEW PASSWORD");
-        page2.setInput_prefill_1("Password");
-        page2.setInput2("RETYPE PASSWORD");
-        page2.setInput_prefill_2("Password");
+        page2.setTitle("Configurar clave");
+        page2.setDescription("Por favor cree una nueva contraseña para su cuenta");
+        page2.setInput1("NUEVA CONTRASEÑA");
+        page2.setInput_prefill_1("Nueva contraseña");
+        page2.setInput2("REPETIR CONTRASEÑA");
+        page2.setInput_prefill_2("Repetir contraseña");
 
         CreateAccountItem page3 = new CreateAccountItem();
-        page3.setTitle("Set up your profile");
-        page3.setInput1("FIRST NAME");
-        page3.setInput_prefill_1("First Name");
-        page3.setInput2("LAST NAME");
-        page3.setInput_prefill_2("Last Name");
-        page3.setInput3("WHATSAPP NUMBER");
+        page3.setTitle("Configura tu perfil");
+        page3.setInput1("PRIMER NOMBRE");
+        page3.setInput_prefill_1("Primer Nombre");
+        page3.setInput2("APELLIDO");
+        page3.setInput_prefill_2("Apellido");
+        page3.setInput3("Número WhatsApp");
         page3.setInput_prefill_3("+57-MMM-XXX-XXXX");
 
         createAccountItems.add(page1);

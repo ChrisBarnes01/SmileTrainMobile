@@ -17,7 +17,7 @@
 
         <TextView
             android:background="@color/colorBackground"
-            android:text="Most Asked Questions "
+            android:text="Preguntas Frecuentes"
             android:id="@+id/top_bar"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
@@ -48,42 +48,67 @@
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:actionText="Action"
-                app:messageText="Ask A question Here"
-                app:titleText="Question??" />
+                app:messageText="Esta etapa del tratamiento con alineadores es muy importante para preparar la etapa para el éxito de tu tratamiento. Los alineadores son los que expanden el maxilar y alinean los dientes."
+                app:titleText="¿Cual es la importancia de los alineadores?" />
 
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:actionText="Action"
-                app:messageText="Ask A question Here"
-                app:titleText="Question Two" />
+                app:messageText="Al menos 3 veces al día (Después de cada comida)."
+                app:titleText="¿Con que frecuencia debo limpiar mis alineadores?" />
 
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:actionText="Action"
-                app:messageText="Ask A question Here"
-                app:titleText="Question Three" />
+                app:messageText="Esto dependerá de lo que observe tu Dr. en el progreso de sus dientes. Por lo general es alrededor de 2 semanas, pero puede durar hasta 4 semanas. La aplicación te indicara cuando debes cambiarlos."
+                app:titleText="¿Con que frecuencia debo cambiar mis alineadores?" />
             <com.aletify.smiletrainmobiletwo.DropdownView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:actionText="Action"
-                app:messageText="Ask A question Here"
-                app:titleText="Question Four" />
+                app:messageText="Siempre que tenga un nuevo alineador. El Dr. también definirá esa frecuencia."
+                app:titleText="¿Con que frecuencia debo tomar fotos?" />
+            <com.aletify.smiletrainmobiletwo.DropdownView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:messageText="El alineador debe encajar bien (buen asentamiento)."
+                app:titleText="¿Como se si mi tratamiento está progresando como debería?" />
+            <com.aletify.smiletrainmobiletwo.DropdownView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:messageText="Si se fractura mi alineador no significa que no sirve.  Es posible usarlo fracturado si aún te sirve.  Es importante contactar de inmediato a tu Dr. Por medio de la app."
+                app:titleText="¿Que pasa si se me fractura mi alineador?" />
+            <com.aletify.smiletrainmobiletwo.DropdownView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:messageText="Cuentanos inmediatamente."
+                app:titleText="¿Que pasa si mi alineador esta flojo?" />
+            <com.aletify.smiletrainmobiletwo.DropdownView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:messageText="Asentamiento es el ajuste completo del alineador en todos los dientes."
+                app:titleText="¿Que es Asentamiento?" />
+            <com.aletify.smiletrainmobiletwo.DropdownView
+                android:layout_marginBottom="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:messageText="22 horas mínimo."
+                app:titleText="¿Cuantas horas al dia debo usar mis aliendores?" />
+
+
+
 
         </LinearLayout>
 
     </ScrollView>
-    </LinearLayout>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:layout_weight="1"
         app:menu="@menu/bottom_navigation_menu" />
+    </LinearLayout>
+
+
 
 </RelativeLayout>

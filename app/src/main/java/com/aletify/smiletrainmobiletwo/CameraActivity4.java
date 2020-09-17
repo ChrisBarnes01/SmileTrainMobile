@@ -109,33 +109,32 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
     private void setupPictures(){
         OnboardingItem item1 = new OnboardingItem();
         item1.setTitle("Front of Mouth");
-        item1.setImage(R.drawable.tooth1);
-        //item1.setOverlayImage(R.drawable.front);
+        item1.setImage(R.drawable.reference_1);
 
         OnboardingItem item2 = new OnboardingItem();
-        //item2.setTitle("Right of Mouth");
-        //item2.setImage(R.drawable.right);
-        item2.setImage(R.drawable.tooth1);
+        item2.setTitle("Image 2");
+        item2.setImage(R.drawable.reference_2);
 
-        item2.setOverlayImage(R.drawable.right);
 
         OnboardingItem item3 = new OnboardingItem();
         item3.setTitle("Left of Mouth");
-        //item3.setImage(R.drawable.left);
-        //item3.setOverlayImage(R.drawable.left);
-        item3.setImage(R.drawable.tooth1);
+        item3.setImage(R.drawable.reference_3);
 
         OnboardingItem item4 = new OnboardingItem();
-        item4.setTitle("Top of Mouth");
-        //item4.setImage(R.drawable.top);
-        //item4.setOverlayImage(R.drawable.top);
-        item4.setImage(R.drawable.tooth1);
+        item4.setTitle("Top of Mouth");;
+        item4.setImage(R.drawable.reference_4);
 
         OnboardingItem item5 = new OnboardingItem();
         item5.setTitle("Bottom of Mouth");
-        //item5.setImage(R.drawable.bottom);
-        //item5.setOverlayImage(R.drawable.bottom);
-        item5.setImage(R.drawable.tooth1);
+        item5.setImage(R.drawable.reference_5);
+
+        OnboardingItem item6 = new OnboardingItem();
+        item6.setTitle("Front of Face");
+        item6.setImage(R.drawable.reference_6);
+
+        OnboardingItem item7 = new OnboardingItem();
+        item7.setTitle("Front of Face");
+        item7.setImage(R.drawable.reference_7);
 
 
         idealPictures.add(item1);
@@ -143,17 +142,13 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         idealPictures.add(item3);
         idealPictures.add(item4);
         idealPictures.add(item5);
+        idealPictures.add(item6);
+        idealPictures.add(item7);
 
     }
 
     private void startGetStarted(){
         setContentView(R.layout.picture_full_view);
-        //layoutOnboardingIndicators = findViewById(R.id.startedMainIndicators);
-        //startingTitle = findViewById(R.id.startingTextMain);
-        //startingSubtitle = findViewById(R.id.startingTextSubtitle);
-        //idealImageView = findViewById(R.id.startingImage);
-
-        //idealImageView.setImageResource(R.drawable.camera_capture);
         buttonStartAction = findViewById(R.id.buttonStartAction);
         buttonStartAction.setText("Next");
         buttonStartAction.setOnClickListener(new View.OnClickListener() {
@@ -162,10 +157,6 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
                 startCamera();
             }
         });
-        //setupOnboardingIndicators();
-        //setCurrentOnboardingIndicator(indexOfPictures);
-
-
     }
 
     @Override
@@ -420,7 +411,6 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
         //Set Images Here Specifically
 
-
         //Now Set Visibility
         largeImage.setVisibility(View.GONE);
         smallImage.setVisibility(View.VISIBLE);
@@ -430,6 +420,9 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         imageLabel = (TextView) findViewById(R.id.camera_top_bar);
         String label = "Picture " + Integer.valueOf(indexOfPictures + 1) + " of " + Integer.valueOf(idealPictures.size()) + ": " + nextImage.getTitle();
         imageLabel.setText(label);
+
+        largeImage.setImageResource(nextImage.getImage());
+        smallImage.setImageResource(nextImage.getImage());
 
         largeImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -445,7 +438,6 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
                 smallImage.setVisibility(View.GONE);
             }
         });
-
 
         surfaceView = (SurfaceView) findViewById(R.id.surfaceview);
         capture_image = (Button) findViewById(R.id.capture_image);
@@ -554,54 +546,4 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
             mCamera.release();
         }
     }
-
-    private void setupOnboardingIndicators(){
-        ImageView[] indicators = new ImageView[idealPictures.size()];
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-        layoutParams.setMargins(8,0,8,0);
-        for (int i = 0; i < indicators.length; i++){
-            indicators[i] = new ImageView(getApplicationContext());
-            indicators[i].setImageDrawable(ContextCompat.getDrawable(
-                    getApplicationContext(),
-                    R.drawable.onboarding_indicator_inactive
-            ));
-            indicators[i].setLayoutParams(layoutParams);
-            layoutOnboardingIndicators.addView(indicators[i]);
-        }
-    }
-
-    private void setCurrentOnboardingIndicator(int index){
-        int childCount = layoutOnboardingIndicators.getChildCount();
-        for (int i = 0; i < childCount; i++){
-            ImageView imageView = (ImageView)layoutOnboardingIndicators.getChildAt(i);
-            if (i == index){
-                imageView.setImageDrawable(
-                        ContextCompat.getDrawable(getApplicationContext(),R.drawable.onboarding_indicator_active)
-                );
-            }
-            else{
-                imageView.setImageDrawable(
-                        ContextCompat.getDrawable(getApplicationContext(),R.drawable.onboarding_indicator_inactive)
-                );
-            }
-        }
-
-
-        /*
-        if (index == onboardingAdapter.getItemCount()-1){
-            buttonOnboardingAction.setText("Start");
-        }
-        else{
-            buttonOnboardingAction.setText("Next");
-        }*/
-    }
-
-
-
-
-
-
-
 }
