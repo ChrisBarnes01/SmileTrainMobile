@@ -1,24 +1,23 @@
 package com.aletify.smiletrainmobiletwo;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-
-import com.google.android.material.button.MaterialButton;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class IntroductorySequence extends AppCompatActivity {
+public class reviewInstructions extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapter;
     private LinearLayout layoutOnboardingIndicators;
@@ -28,7 +27,7 @@ public class IntroductorySequence extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_introductory_sequence);
+        setContentView(R.layout.activity_review_instructions);
 
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
@@ -69,18 +68,48 @@ public class IntroductorySequence extends AppCompatActivity {
         //int avatarId = prefs.getInt("avatarId", R.id.view1);
         int avatarId = R.id.view1;
 
+        OnboardingItem page0 = new OnboardingItem();
+        page0.setImage(R.drawable.icon_1);
+        page0.setTitle("Ahora tomemos fotos con tus nuevos alineadores puestos.");
+        page0.setDescription("Antes de tomar las fotos, recuerda……");
+
         OnboardingItem page1 = new OnboardingItem();
-        page1.setTitle("Welcome to Aletify.");
-        page1.setDescription("We're here to help you manage your dental health.");
-        page1.setImage(avatarId);
+        page1.setTitle("Limpiar la cámara de tu celular");
+        page1.setImage(R.drawable.general_1);
 
         OnboardingItem page2 = new OnboardingItem();
-        page2.setTitle("This app is an early stage demo.");
-        page2.setDescription("But, we're working to get the final version out to you.");
-        page2.setImage(avatarId);
+        page2.setTitle("Asegúrate de estar en un lugar bien iluminado.");
+        page2.setImage(R.drawable.general_2);
 
+        OnboardingItem page3 = new OnboardingItem();
+        page3.setTitle("Si tienes cabello largo, sujétalo en una cola de caballo.");
+        page3.setImage(R.drawable.general_4);
+
+        OnboardingItem page4 = new OnboardingItem();
+        page4.setTitle("Sostén tu celular cerca a la cara del paciente.");
+        page4.setImage(R.drawable.general_5);
+
+        OnboardingItem page5 = new OnboardingItem();
+        page5.setTitle("Sostén el teléfono a la altura de la cara del paciente.");
+        page5.setImage(R.drawable.general_6);
+
+        OnboardingItem page6 = new OnboardingItem();
+        page6.setTitle("Mantén al alineador puesto para todas las fotos.");
+        page6.setImage(R.drawable.general_7);
+
+        OnboardingItem page7 = new OnboardingItem();
+        page7.setTitle("Coloca el retractor de labios y tracciona hacia los lados y hacia atrás");
+        page7.setImage(R.drawable.general_8);
+
+        onboardingItems.add(page0);
         onboardingItems.add(page1);
         onboardingItems.add(page2);
+        onboardingItems.add(page3);
+        onboardingItems.add(page4);
+        onboardingItems.add(page5);
+        onboardingItems.add(page6);
+        onboardingItems.add(page7);
+
 
         onboardingAdapter = new OnboardingAdapter(onboardingItems);
 
@@ -120,10 +149,10 @@ public class IntroductorySequence extends AppCompatActivity {
         }
 
         if (index == onboardingAdapter.getItemCount()-1){
-            buttonOnboardingAction.setText("Start");
+            buttonOnboardingAction.setText("Tomar fotos");
         }
         else{
-            buttonOnboardingAction.setText("Next");
+            buttonOnboardingAction.setText("siguiente");
         }
     }
 }

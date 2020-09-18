@@ -17,7 +17,7 @@
 
         <TextView
             android:background="@color/colorBackground"
-            android:text="Aligner Photos"
+            android:text="Fotos de Alineadores"
             android:id="@+id/top_bar"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
@@ -53,14 +53,14 @@
                     android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tell Us About Your Previous Aligner">
+                    android:text="Cuéntanos sobre tu alineador anterior">
 
                 </TextView>
 
 
                 <!--Yes No Card-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/yes_no_card"
+                    android:id="@+id/hole_card"
                     style="@style/CardView.Light"
                     android:elevation="8dp"
                     android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginTop="12dp"
                             android:layout_gravity="center"
-                            android:text="Are There Any Holes in the Aligner?"
+                            android:text="¿Presenta alguna perforación?"
                             android:layout_marginBottom="12dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
@@ -103,33 +103,35 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="12dp">
 
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="YES"
-                                android:textStyle="bold"
-                                android:textColor="#000000"
-                                android:backgroundTint="@android:color/transparent"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_marginStart="12dp"
-                                android:layout_marginLeft="12dp"
-                                />
 
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:backgroundTint="@android:color/transparent"
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ToggleButton
+                                    android:id="@+id/holeButton1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:checked="false"
+                                    android:textColor="#000"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"/>
 
-                                android:layout_alignParentRight="true"
-                                android:layout_marginEnd="12dp"
-                                android:background="@android:color/transparent"
-                                android:textColor="#000000"
-                                android:textStyle="bold"
-                                android:layout_marginRight="12dp"
-                                android:text="NO" />
-
+                                <ToggleButton
+                                    android:id="@+id/holeButton2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:layout_marginLeft="50dp"
+                                    android:checked="false"
+                                    android:textColor="#000"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="12dp"
+                                    android:layout_marginRight="12dp"/>
+                            </RelativeLayout>
                         </RelativeLayout>
 
 
@@ -142,7 +144,7 @@
 
                 <!--Yes No Card-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/yes_no_card_2"
+                    android:id="@+id/crack_card"
                     style="@style/CardView.Light"
                     android:elevation="8dp"
                     android:layout_width="match_parent"
@@ -170,7 +172,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginTop="12dp"
                             android:layout_gravity="center"
-                            android:text="Are There Any Cracks in the Aligner?"
+                            android:text="¿Presenta alguna fractura?"
                             android:layout_marginBottom="12dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginRight="3dp"
@@ -185,33 +187,35 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="12dp">
 
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="YES"
-                                android:textStyle="bold"
-                                android:textColor="#000000"
-                                android:backgroundTint="@android:color/transparent"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_marginStart="12dp"
-                                android:layout_marginLeft="12dp"
-                                />
 
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:backgroundTint="@android:color/transparent"
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ToggleButton
+                                    android:id="@+id/crackButton1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:checked="false"
+                                    android:textColor="#000"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"/>
 
-                                android:layout_alignParentRight="true"
-                                android:layout_marginEnd="12dp"
-                                android:background="@android:color/transparent"
-                                android:textColor="#000000"
-                                android:textStyle="bold"
-                                android:layout_marginRight="12dp"
-                                android:text="NO" />
-
+                                <ToggleButton
+                                    android:id="@+id/crackButton2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:layout_marginLeft="50dp"
+                                    android:checked="false"
+                                    android:textColor="#000"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="12dp"
+                                    android:layout_marginRight="12dp"/>
+                            </RelativeLayout>
                         </RelativeLayout>
 
 
@@ -220,17 +224,20 @@
                     </LinearLayout>
 
 
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/clickable_text_link"
                     android:layout_margin="12dp"
                     android:textSize="16dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Is this your first Aligner? Click Here">
+                    android:text="¿Este es tu primer alineador? Oprime aquí.">
 
                 </TextView>
+
             </LinearLayout>
 
 
@@ -254,7 +261,7 @@
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="12dp"
-        android:text="Next"></Button>
+        android:text="siguiente"></Button>
 
 
 </RelativeLayout>

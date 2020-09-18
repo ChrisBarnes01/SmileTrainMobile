@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     String totalUserName;
     List<CalendarObject> myAppointments;
     List<Boolean> listOfPreviousCheckins;
+    ImageView avatar;
     int DayOfWeek;
 
     @Override
@@ -66,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
         boolean loggedIn = prefs.getBoolean("LoggedIn", false);
+        //int avatarId = prefs.getInt("avatarId", R.id.view1);
+
+        //avatar = findViewById(R.id.circleImage);
+        //avatar.setImageDrawable(getDrawable(avatarId));
+        //R.id.
+
 
 
         //JUMP TO CREATE_ACCOUNT PAGE
@@ -368,7 +375,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             //Intent intent = new Intent(getApplicationContext(), PrePhotoAlignerCheckin.class);
-            Intent intent = new Intent(getApplicationContext(), MainSequence.class);
+            //Intent intent = new Intent(getApplicationContext(), MainSequence.class);
+            //Intent intent = new Intent(getApplicationContext(), reviewInstructions.class);
+            Intent intent = new Intent(getApplicationContext(), PrePhotoAlignerCheckin.class);
 
             startActivity(intent);
         }

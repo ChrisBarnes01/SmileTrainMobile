@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -26,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,6 +42,13 @@ public class CreateAccount extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String globalUsername;
     String globalPassword;
+    CardView view1;
+    CardView view2;
+    CardView view3;
+    CardView view4;
+    CardView view5;
+    CardView view6;
+    private String globalFirstName;
 
 
     @Override
@@ -84,6 +93,7 @@ public class CreateAccount extends AppCompatActivity {
         page1.setInput_prefill_1("Usuario");
         page1.setInput2("CONTRASEÑA TEMPORAL");
         page1.setInput_prefill_2("Contraseña Temporal");
+        page1.setSelectCharacterItem(false);
 
         CreateAccountItem page2 = new CreateAccountItem();
         page2.setTitle("Configurar clave");
@@ -92,6 +102,8 @@ public class CreateAccount extends AppCompatActivity {
         page2.setInput_prefill_1("Nueva contraseña");
         page2.setInput2("REPETIR CONTRASEÑA");
         page2.setInput_prefill_2("Repetir contraseña");
+        page2.setSelectCharacterItem(false);
+
 
         CreateAccountItem page3 = new CreateAccountItem();
         page3.setTitle("Configura tu perfil");
@@ -101,10 +113,17 @@ public class CreateAccount extends AppCompatActivity {
         page3.setInput_prefill_2("Apellido");
         page3.setInput3("Número WhatsApp");
         page3.setInput_prefill_3("+57-MMM-XXX-XXXX");
+        page3.setSelectCharacterItem(false);
+
+        CreateAccountItem page4 = new CreateAccountItem();
+        page4.setSelectCharacterItem(true);
+
+
 
         createAccountItems.add(page1);
         createAccountItems.add(page2);
         createAccountItems.add(page3);
+        createAccountItems.add(page4);
 
         createAccountAdapter = new CreateAccountAdapter(createAccountItems);
 
@@ -126,6 +145,17 @@ public class CreateAccount extends AppCompatActivity {
             layoutProgressIndicators.addView(indicators[i]);
         }
     }
+
+    private void clearAll(){
+        view1.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
+        view2.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
+        view3.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
+        view4.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
+        view5.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
+        view6.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
+    }
+
+
 
     private void setCurrentProgressIndicator(int index){
         int childCount = layoutProgressIndicators.getChildCount();
@@ -236,7 +266,7 @@ public class CreateAccount extends AppCompatActivity {
             });
 
         }
-        else{
+        else if (index == 2){
             buttonOnboardingAction.setText("Siguiente");
             buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -276,6 +306,7 @@ public class CreateAccount extends AppCompatActivity {
                         User user = new User(globalUsername, firstNameString, lastNameString, whatsAppNumberString);
                         user.calendarObjectList = calendarObjectList;
                         mDatabase.child(globalUsername).setValue(user);
+                        globalFirstName = firstNameString;
 
 
                         //UPDATE SHARED PREFERENCES
@@ -294,6 +325,105 @@ public class CreateAccount extends AppCompatActivity {
                             finish();
                         }
                     }
+                }
+            });
+        }
+        else{
+            //Manage Select Avatar
+
+            TextView message = (TextView) findViewById(R.id.welcomeMessage);
+            String messageToSend = "Bienvenidos a Altefy, " + globalFirstName;
+
+            view1 = (CardView) findViewById(R.id.view1);
+            view2 = (CardView) findViewById(R.id.view2);
+            view3 = (CardView) findViewById(R.id.view3);
+            view4 = (CardView) findViewById(R.id.view4);
+            view5 = (CardView) findViewById(R.id.view5);
+            view6 = (CardView) findViewById(R.id.view6);
+
+
+            view1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clearAll();
+                    view1.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("avatarId", R.id.view1);
+                    editor.apply();
+                }
+            });
+            view2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clearAll();
+                    view2.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("avatarId", R.id.view2);
+                    editor.apply();
+                }
+            });
+            view3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clearAll();
+                    view3.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("avatarId", R.id.view3);
+                    editor.apply();
+                }
+            });
+            view4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clearAll();
+                    view4.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("avatarId", R.id.view4);
+                    editor.apply();
+                }
+            });
+            view5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clearAll();
+                    view5.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("avatarId", R.id.view5);
+                    editor.apply();
+                }
+            });
+            view6.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clearAll();
+                    view6.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("avatarId", R.id.view6);
+                    editor.apply();
+                }
+            });
+
+
+            buttonOnboardingAction.setText("Siguiente");
+            buttonOnboardingAction.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+
+
+                    if(createAccountViewPager.getCurrentItem() + 1 < createAccountAdapter.getItemCount()){
+                        createAccountViewPager.setCurrentItem(createAccountViewPager.getCurrentItem() + 1);
+                    }
+                    else{
+                        startActivity(new Intent(getApplicationContext(), IntroductorySequence.class));
+                        finish();
+                    }
+
                 }
             });
         }

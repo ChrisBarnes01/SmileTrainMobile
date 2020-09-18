@@ -41,19 +41,19 @@
         android:textStyle="bold"
         android:textSize="32dp"
         android:layout_height="wrap_content"
-        android:text="Welcome to Altefy"/>
+        android:text="Bienvenidos a Altefy"/>
 
     <Button
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="Sign Up"
+        android:text="Ingresar"
         android:layout_gravity="center"
         android:id="@+id/signUpLink"
         />
     <Button
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="Log In"
+        android:text="Autenticarme"
         android:layout_gravity="center"
         android:id="@+id/loginLink"
         />

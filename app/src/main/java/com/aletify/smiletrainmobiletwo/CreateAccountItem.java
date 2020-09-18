@@ -15,6 +15,16 @@ public class CreateAccountItem {
     private String input3;
     private String input_prefill_3;
 
+    public boolean isSelectCharacterItem() {
+        return selectCharacterItem;
+    }
+
+    public void setSelectCharacterItem(boolean selectCharacterItem) {
+        this.selectCharacterItem = selectCharacterItem;
+    }
+
+    private boolean selectCharacterItem;
+
 
     public String getInput1() {
         return input1;

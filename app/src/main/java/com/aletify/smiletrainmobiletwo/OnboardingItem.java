@@ -5,6 +5,7 @@ public class OnboardingItem {
     private int image;
     private String title;
     private String description;
+    private boolean selectCharacterItem;
     private int overlayImage;
 
     public int getImage() {
@@ -26,6 +27,8 @@ public class OnboardingItem {
     public String getDescription() {
         return description;
     }
+
+
 
     public int getOverlayImage() {
         return overlayImage;

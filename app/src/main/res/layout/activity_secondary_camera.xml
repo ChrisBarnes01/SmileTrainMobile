@@ -29,7 +29,7 @@
 
         <TextView
             android:background="@color/colorWhite"
-            android:text="Your doctor needs a little more information about your aligners"
+            android:text="Tu doctor necesita un poco más información sobre tus alineadores"
             android:id="@+id/camera_top_bar"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
@@ -45,7 +45,7 @@
             />
         <TextView
             android:background="@color/colorWhite"
-            android:text="Please take a photo of your aligner"
+            android:text="Por favor, toma una foto UNICAMENTE de tu alineador."
             android:id="@+id/camera_bottom_bar"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="Capture"
+                android:text="Tomar Foto"
                 android:translationZ="90dp" />
 
         </LinearLayout>
