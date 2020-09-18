@@ -397,13 +397,13 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
         });
 
 
-        btnContinue.setText("Confirm Picture");
+        btnContinue.setText("Confirmado");
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //imageCollection.add(currentPicture);
                 Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TestAlligner.class);
                 startActivity(intent);
             }
         });
