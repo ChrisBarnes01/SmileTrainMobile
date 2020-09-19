@@ -11,6 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.media.Image;
@@ -104,6 +106,21 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
     }
 
 
+    //From https://stackoverflow.com/questions/30340591/changing-an-imageview-to-black-and-white
+    private void setBW(ImageView iv){
+
+        float brightness = 10; // change values to suite your need
+
+        float[] colorMatrix = {
+                0.33f, 0.33f, 0.33f, 0, brightness,
+                0.33f, 0.33f, 0.33f, 0, brightness,
+                0.33f, 0.33f, 0.33f, 0, brightness,
+                0, 0, 0, 1, 0
+        };
+
+        ColorFilter colorFilter = new ColorMatrixColorFilter(colorMatrix);
+        iv.setColorFilter(colorFilter);
+    }
 
 
     private void setupPictures(){
@@ -149,8 +166,23 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
     private void startGetStarted(){
         setContentView(R.layout.picture_full_view);
+
+        ImageView reference2 = (ImageView) findViewById(R.id.reference2);
+        ImageView reference3 = (ImageView) findViewById(R.id.reference3);
+        ImageView reference4 = (ImageView) findViewById(R.id.reference4);
+        ImageView reference5 = (ImageView) findViewById(R.id.reference5);
+        ImageView reference6 = (ImageView) findViewById(R.id.reference6);
+        ImageView reference7 = (ImageView) findViewById(R.id.reference7);
+
+        setBW(reference2);
+        setBW(reference3);
+        setBW(reference4);
+        setBW(reference5);
+        setBW(reference6);
+        setBW(reference7);
+
         buttonStartAction = findViewById(R.id.buttonStartAction);
-        buttonStartAction.setText("Next");
+        buttonStartAction.setText("siguiente");
         buttonStartAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,14 +193,14 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
 
     @Override
     public void onBackPressed() {
-        final String[] options = {"Yes", "No"};
+        final String[] options = {"Si", "No"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Go back to Main Menu?");
+        builder.setTitle("Vuelve al menú principal?");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (options[which].equals("Yes")) {
+                if (options[which].equals("Si")) {
                     clearAll();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -418,7 +450,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         //Now Set Title of Image
         OnboardingItem nextImage = idealPictures.get(indexOfPictures);
         imageLabel = (TextView) findViewById(R.id.camera_top_bar);
-        String label = "Picture " + Integer.valueOf(indexOfPictures + 1) + " of " + Integer.valueOf(idealPictures.size()) + ": " + nextImage.getTitle();
+        String label = "Imagen " + Integer.valueOf(indexOfPictures + 1) + " de " + Integer.valueOf(idealPictures.size());
         imageLabel.setText(label);
 
         largeImage.setImageResource(nextImage.getImage());

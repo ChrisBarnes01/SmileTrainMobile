@@ -104,8 +104,8 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:elevation="12dp"
                 android:layout_gravity="center"
                 android:layout_margin="12dp"
@@ -118,7 +118,7 @@
                 android:shape="ring"
                 android:thicknessRatio="1.0">
                 <ImageView
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_width="match_parent"
                     android:id="@+id/imageView1"
                     android:src="@drawable/icon_1"
@@ -127,8 +127,8 @@
                 </ImageView>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:elevation="12dp"
                 android:clickable="true"
                 android:layout_weight="1"
@@ -141,7 +141,7 @@
                 android:shape="ring"
                 android:thicknessRatio="1.0">
                 <ImageView
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_width="match_parent"
                     android:id="@+id/imageView2"
                     android:src="@drawable/icon_2"
@@ -156,8 +156,8 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:elevation="12dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -170,7 +170,7 @@
                 android:shape="ring"
                 android:thicknessRatio="1.0">
                 <ImageView
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_width="match_parent"
                     android:id="@+id/imageView3"
                     android:src="@drawable/icon_3"
@@ -179,8 +179,8 @@
                 </ImageView>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:elevation="12dp"
                 android:layout_weight="1"
                 android:clickable="true"
@@ -193,7 +193,7 @@
                 android:shape="ring"
                 android:thicknessRatio="1.0">
                 <ImageView
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_width="match_parent"
                     android:id="@+id/imageView4"
                     android:src="@drawable/icon_4"
@@ -209,8 +209,8 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:elevation="12dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -223,7 +223,7 @@
                 android:shape="ring"
                 android:thicknessRatio="1.0">
                 <ImageView
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_width="match_parent"
                     android:id="@+id/imageView5"
                     android:src="@drawable/icon_5"
@@ -232,8 +232,8 @@
                 </ImageView>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:elevation="12dp"
                 android:clickable="true"
                 android:layout_gravity="center"
@@ -246,7 +246,7 @@
                 android:shape="ring"
                 android:thicknessRatio="1.0">
                 <ImageView
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_width="match_parent"
                     android:id="@+id/imageView6"
                     android:src="@drawable/icon_6"

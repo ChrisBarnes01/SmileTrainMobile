@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:gravity="center"
+    tools:context=".FirstPage">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:elevation="12dp"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:id="@+id/view2"
+        app:cardCornerRadius="90dp"
+        android:layout_centerHorizontal="true"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio="1.0">
+        <ImageView
+            android:layout_height="180dp"
+            android:layout_width="match_parent"
+            android:id="@+id/imageView1"
+            android:src="@drawable/icon_1"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+        </ImageView>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_margin="24dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:textSize="32dp"
+        android:layout_height="wrap_content"
+        android:text="Todavía no es tiempo de que tomes tus fotos"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:text="Cancelar"
+        android:layout_gravity="center"
+        android:id="@+id/cancelPhotosLink"
+        />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:text="Tomar de todas maneras"
+        android:layout_gravity="center"
+        android:id="@+id/takePhotosAnywayLink"
+        />
+</LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

@@ -14,6 +14,7 @@ import androidx.transition.TransitionManager;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -98,17 +99,21 @@ public class FAQ extends AppCompatActivity {
     }
 
     private void runCamera(){
-
-
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        int numberOfDaysUntilCheckIn = prefs.getInt("numberOfDaysUntilCheckIn", 1);
         getPermissions();
         if (permissionsGranted() == false) {
             Toast.makeText(getApplicationContext(), "You Must Grant Permissions to use Camera", Toast.LENGTH_SHORT);
         }
-        else{
-            Intent intent = new Intent(getApplicationContext(), CameraActivity4.class);
+        if (numberOfDaysUntilCheckIn == 0){
+            Intent intent = new Intent(getApplicationContext(), PrePhotoAlignerCheckin.class);
+
             startActivity(intent);
         }
-
+        else{
+            Intent intent = new Intent(getApplicationContext(), TooEarlyForPictureNotification.class);
+            startActivity(intent);
+        }
     }
 
     private void runFAQ(){

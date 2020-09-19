@@ -55,7 +55,7 @@ public class reviewInstructions extends AppCompatActivity {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 }
                 else{
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), CameraActivity4.class));
                     finish();
                 }
             }

@@ -70,17 +70,22 @@ public class IntroductorySequence extends AppCompatActivity {
         int avatarId = R.id.view1;
 
         OnboardingItem page1 = new OnboardingItem();
-        page1.setTitle("Welcome to Aletify.");
-        page1.setDescription("We're here to help you manage your dental health.");
+        //page1.setTitle("Welcome to Aletify.");
+        page1.setDescription("Hola! Bienvenido a Altefy! ¡Estamos muy contentos de tenerte aquí! Esta aplicación fue diseñada para hacer que tu tratamiento ortodóncico sea tan fácil y divertido como sea posible");
         page1.setImage(avatarId);
 
         OnboardingItem page2 = new OnboardingItem();
-        page2.setTitle("This app is an early stage demo.");
-        page2.setDescription("But, we're working to get the final version out to you.");
+        //page2.setTitle("This app is an early stage demo.");
+        page2.setDescription("Será una forma fácil de comunicarte con tu Doctor y sus colaboradores durante el tratamiento. Hemos incluido muchas ayudas para que esa comunicación sea más efectiva. Este corto tutorial te guiará mientras aprendes a manejar Altefy y asegurará que la experiencia sea un éxito.");
         page2.setImage(avatarId);
+
+        OnboardingItem page3 = new OnboardingItem();
+        page3.setDescription("Tienes una pregunta que no está aquí? Oprime el botón “OTRO” y mándanos un mensaje. Estaremos encantados de contestar cualquier pregunta que se te pueda ocurrir.");
+        page3.setImage(avatarId);
 
         onboardingItems.add(page1);
         onboardingItems.add(page2);
+        onboardingItems.add(page3);
 
         onboardingAdapter = new OnboardingAdapter(onboardingItems);
 

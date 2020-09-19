@@ -1,6 +1,7 @@
 package com.aletify.smiletrainmobiletwo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class User {
@@ -9,7 +10,7 @@ public class User {
     public String lastName;
     public String whatsAppNumber;
     public List<CalendarObject> calendarObjectList;
-    public List<CheckInSet> checkInObjectList;
+    public HashMap<String, CheckInSet> checkInObjectList;
     public List<PhotoSet> photoSetList;
 
     public User(){
@@ -22,7 +23,7 @@ public class User {
         this.lastName = lastName;
         this.whatsAppNumber = whatsAppNumber;
         this.calendarObjectList = new ArrayList<>();
-        this.checkInObjectList = new ArrayList<>();
+        this.checkInObjectList = new HashMap<>();
         this.photoSetList = new ArrayList<>();
     }
 

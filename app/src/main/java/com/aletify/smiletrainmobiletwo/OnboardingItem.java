@@ -1,5 +1,7 @@
 package com.aletify.smiletrainmobiletwo;
 
+import android.content.Intent;
+
 public class OnboardingItem {
 
     private int image;
@@ -7,6 +9,16 @@ public class OnboardingItem {
     private String description;
     private boolean selectCharacterItem;
     private int overlayImage;
+    private int index;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
 
     public int getImage() {
         return image;
@@ -40,5 +52,10 @@ public class OnboardingItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "index " + Integer.valueOf(index);
     }
 }

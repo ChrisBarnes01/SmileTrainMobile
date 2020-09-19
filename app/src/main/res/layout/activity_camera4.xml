@@ -28,14 +28,14 @@
 
         <TextView
             android:background="@color/colorBackground"
-            android:text=""
             android:id="@+id/camera_top_bar"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textStyle="bold"
-            android:textColor="@color/colorWhite"
-            android:gravity="left"
+            android:textColor="@color/colorBlack"
+            android:gravity="center"
             android:textSize="20sp"
+            android:text="Fotos de alineadores"
             android:paddingLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 android:layout_gravity="right"
                 android:layout_weight="1"
                 android:layout_marginRight="6dp"
-                android:text="Retake Image"
+                android:text="Repite la foto"
                 android:translationZ="90dp" />
 
             <Button
@@ -88,7 +88,7 @@
                 android:layout_gravity="right"
                 android:layout_weight="1"
                 android:layout_marginLeft="6dp"
-                android:text="Accept Image"
+                android:text="Confirmado"
                 android:translationZ="90dp" />
         </LinearLayout>
 

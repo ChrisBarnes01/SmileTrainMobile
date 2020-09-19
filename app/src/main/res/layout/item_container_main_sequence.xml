@@ -8,10 +8,7 @@
     android:gravity="center"
     android:padding="10dp"
     android:layout_height="match_parent">
-
-
-
-
+    
     <androidx.cardview.widget.CardView
         android:id="@+id/yes_no_card"
         style="@style/CardView.Light"
@@ -81,6 +78,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/yes_no_option"
                     android:layout_height="wrap_content">
                     <ToggleButton
                         android:id="@+id/simpleToggleButton1"
@@ -96,6 +94,27 @@
 
                     <ToggleButton
                         android:id="@+id/simpleToggleButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:layout_marginLeft="50dp"
+                        android:checked="false"
+                        android:textColor="#000"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/complete_option">
+
+
+                    <ToggleButton
+                        android:id="@+id/complete_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"

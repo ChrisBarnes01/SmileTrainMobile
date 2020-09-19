@@ -197,14 +197,14 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
 
     @Override
     public void onBackPressed() {
-        final String[] options = {"Yes", "No"};
+        final String[] options = {"Si", "No"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Go back to Main Menu?");
+        builder.setTitle("Vuelve al menú principal?");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (options[which].equals("Yes")) {
+                if (options[which].equals("Si")) {
                     clearAll();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -216,7 +216,7 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
         });
         builder.show();
     }
-
+    
     /*
     private void showIdealImage(){
         if (indexOfPictures < idealPictures.size()){

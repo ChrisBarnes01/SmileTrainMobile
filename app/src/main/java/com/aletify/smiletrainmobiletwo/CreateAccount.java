@@ -31,7 +31,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CreateAccount extends AppCompatActivity {
 
@@ -119,11 +121,10 @@ public class CreateAccount extends AppCompatActivity {
         page4.setSelectCharacterItem(true);
 
 
-
         createAccountItems.add(page1);
         createAccountItems.add(page2);
         createAccountItems.add(page3);
-        createAccountItems.add(page4);
+        //createAccountItems.add(page4);
 
         createAccountAdapter = new CreateAccountAdapter(createAccountItems);
 
@@ -144,15 +145,6 @@ public class CreateAccount extends AppCompatActivity {
             indicators[i].setLayoutParams(layoutParams);
             layoutProgressIndicators.addView(indicators[i]);
         }
-    }
-
-    private void clearAll(){
-        view1.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
-        view2.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
-        view3.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
-        view4.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
-        view5.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
-        view6.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
     }
 
 
@@ -285,10 +277,10 @@ public class CreateAccount extends AppCompatActivity {
 
                     //1 Calendar Object
 
-                    CalendarObject object1 = new CalendarObject(CalendarObject.PHYSICAL_APPOINTMENT, "260");
+                    CalendarObject object1 = new CalendarObject(CalendarObject.PHYSICAL_APPOINTMENT, "264");
 
                     //2 Calendar Object 2
-                    CalendarObject object2 = new CalendarObject(CalendarObject.PICTURES_DUE, "261");
+                    CalendarObject object2 = new CalendarObject(CalendarObject.PICTURES_DUE, "265");
 
                     //Calendar Object 3
                     CalendarObject object3 = new CalendarObject(CalendarObject.PHYSICAL_APPOINTMENT, "280");
@@ -296,6 +288,12 @@ public class CreateAccount extends AppCompatActivity {
                     calendarObjectList.add(object1);
                     calendarObjectList.add(object2);
                     calendarObjectList.add(object3);
+
+                    //Make CheckinBarrier
+                    HashMap<String, CheckInSet> checkInUpdates = new HashMap<>();
+                    CheckInSet mySet = new CheckInSet();
+                    mySet.date = -1;
+                    checkInUpdates.put(String.valueOf(mySet.date), mySet);
 
 
                     if (firstNameString.length() < 1 || lastNameString.length() < 1 || whatsAppNumber.length() < 1){
@@ -305,6 +303,7 @@ public class CreateAccount extends AppCompatActivity {
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("patients");
                         User user = new User(globalUsername, firstNameString, lastNameString, whatsAppNumberString);
                         user.calendarObjectList = calendarObjectList;
+                        user.checkInObjectList = checkInUpdates;
                         mDatabase.child(globalUsername).setValue(user);
                         globalFirstName = firstNameString;
 
@@ -317,11 +316,18 @@ public class CreateAccount extends AppCompatActivity {
                         editor.putBoolean("LoggedIn", true);
                         editor.apply();
 
+
+                        firstName = null;
+                        lastName = null;
+                        whatsAppNumber = null;
+
                         if(createAccountViewPager.getCurrentItem() + 1 < createAccountAdapter.getItemCount()){
                             createAccountViewPager.setCurrentItem(createAccountViewPager.getCurrentItem() + 1);
                         }
                         else{
-                            startActivity(new Intent(getApplicationContext(), IntroductorySequence.class));
+                            Intent intent = new Intent(getApplicationContext(), SelectAvatar.class);
+                            intent.putExtra("firstName", globalFirstName);
+                            startActivity(intent);
                             finish();
                         }
                     }
@@ -331,83 +337,10 @@ public class CreateAccount extends AppCompatActivity {
         else{
             //Manage Select Avatar
 
-            TextView message = (TextView) findViewById(R.id.welcomeMessage);
-            String messageToSend = "Bienvenidos a Altefy, " + globalFirstName;
-
-            view1 = (CardView) findViewById(R.id.view1);
-            view2 = (CardView) findViewById(R.id.view2);
-            view3 = (CardView) findViewById(R.id.view3);
-            view4 = (CardView) findViewById(R.id.view4);
-            view5 = (CardView) findViewById(R.id.view5);
-            view6 = (CardView) findViewById(R.id.view6);
+            //TextView message = (TextView) findViewById(R.id.welcomeMessage);
+            //String messageToSend = "Bienvenidos a Altefy, " + globalFirstName;
 
 
-            view1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clearAll();
-                    view1.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putInt("avatarId", R.id.view1);
-                    editor.apply();
-                }
-            });
-            view2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clearAll();
-                    view2.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putInt("avatarId", R.id.view2);
-                    editor.apply();
-                }
-            });
-            view3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clearAll();
-                    view3.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putInt("avatarId", R.id.view3);
-                    editor.apply();
-                }
-            });
-            view4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clearAll();
-                    view4.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putInt("avatarId", R.id.view4);
-                    editor.apply();
-                }
-            });
-            view5.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clearAll();
-                    view5.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putInt("avatarId", R.id.view5);
-                    editor.apply();
-                }
-            });
-            view6.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clearAll();
-                    view6.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putInt("avatarId", R.id.view6);
-                    editor.apply();
-                }
-            });
 
 
             buttonOnboardingAction.setText("Siguiente");
@@ -420,7 +353,9 @@ public class CreateAccount extends AppCompatActivity {
                         createAccountViewPager.setCurrentItem(createAccountViewPager.getCurrentItem() + 1);
                     }
                     else{
-                        startActivity(new Intent(getApplicationContext(), IntroductorySequence.class));
+                        Intent intent = new Intent(getApplicationContext(), SelectAvatar.class);
+                        intent.putExtra("firstName", globalFirstName);
+                        startActivity(intent);
                         finish();
                     }
 

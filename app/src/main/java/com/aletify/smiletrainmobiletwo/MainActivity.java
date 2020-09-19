@@ -47,6 +47,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
     List<CalendarObject> myAppointments;
     List<Boolean> listOfPreviousCheckins;
     ImageView avatar;
+    CardView todayIsDayCard;
+    CardView dayReminderCard;
     int DayOfWeek;
+    HashMap<String, CheckInSet> myCheckins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +71,18 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
         boolean loggedIn = prefs.getBoolean("LoggedIn", false);
-        //int avatarId = prefs.getInt("avatarId", R.id.view1);
 
-        //avatar = findViewById(R.id.circleImage);
-        //avatar.setImageDrawable(getDrawable(avatarId));
+        String avatarName = prefs.getString("avatarId", "icon_1");
+        avatar = findViewById(R.id.circleImage);
+        int resourceId = getApplicationContext().getResources().getIdentifier(avatarName, "drawable", getApplicationContext().getPackageName());
+        avatar.setImageDrawable(getResources().getDrawable(resourceId));
+
+
+        //avatar.setImageDrawable(getResources().getDrawable(R.drawable.icon_1));
         //R.id.
 
-
+        todayIsDayCard = (CardView) findViewById(R.id.today_is_day_card);
+        dayReminderCard = (CardView) findViewById(R.id.home_day_reminder_card);
 
         //JUMP TO CREATE_ACCOUNT PAGE
         //DELETE THIS LATER
@@ -87,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
             runIntroSequence();
         }
         else{
+            Locale colombiaLocale=new Locale("es", "CO");
 
             Calendar calendar = Calendar.getInstance();
 
             DayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) -1;
-            listOfPreviousCheckins = new ArrayList<>(Arrays.asList(false, false, false, false, false, false, false));
 
 
             final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -104,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
             layoutCheckInIndicators = findViewById(R.id.home_check_in_record_view);
 
             Calendar myCalendar = Calendar.getInstance();
-            dayOfWeekLabel.setText(myCalendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()));//myCalendar.get(Calendar.DAY_OF_WEEK));
-            monthYearLabel.setText(myCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + myCalendar.get(Calendar.YEAR));
+            dayOfWeekLabel.setText(myCalendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, colombiaLocale));//myCalendar.get(Calendar.DAY_OF_WEEK));
+            monthYearLabel.setText(myCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, colombiaLocale) + " " + myCalendar.get(Calendar.YEAR));
             Date date = new Date();
             dateLabel.setText((String) DateFormat.format("dd",   date));
 
@@ -121,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     //Toast.makeText(getApplicationContext(), user.firstName, Toast.LENGTH_SHORT).show();
                     totalUserName = user.firstName + " " + user.lastName;
                     myAppointments = user.calendarObjectList;
+                    myCheckins = user.checkInObjectList;
 
                     //SET NUMBER OF DAYS UNTIL PICTURE SENT IN APPOINTMENT
                     Calendar calendar = Calendar.getInstance();
@@ -129,14 +139,42 @@ public class MainActivity extends AppCompatActivity {
                     int nextPhotosDueDate = getNextPhotoDueDate();
                     int numberOfDaysUntilCheckIn = nextPhotosDueDate - dayOfYear;
 
-                    String first = Integer.valueOf(numberOfDaysUntilCheckIn) + " Days";
-                    String next = ", until you will need to send in your new aligner photos";
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("numberOfDaysUntilCheckIn", numberOfDaysUntilCheckIn);
+                    editor.apply();
 
-                    numberOfDaysNotification.setText(first + next, TextView.BufferType.SPANNABLE);
-                    Spannable s = (Spannable)numberOfDaysNotification.getText();
-                    int start = 0;
-                    int end = first.length();
-                    s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                    if (numberOfDaysUntilCheckIn > 0){
+                        dayReminderCard.setVisibility(View.VISIBLE);
+                        todayIsDayCard.setVisibility(View.GONE);
+                        String first = Integer.valueOf(numberOfDaysUntilCheckIn) + " Días";
+                        String next = ", para enviar sus nuevas fotos con alineadores. ";
+
+                        numberOfDaysNotification.setText(first + next, TextView.BufferType.SPANNABLE);
+                        Spannable s = (Spannable)numberOfDaysNotification.getText();
+                        int start = 0;
+                        int end = first.length();
+                        s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+                    //Change this to zero
+                    else if(numberOfDaysUntilCheckIn == 0){
+                        dayReminderCard.setVisibility(View.GONE);
+                        todayIsDayCard.setVisibility(View.VISIBLE);
+
+                        Button todayIsDayButton = (Button) findViewById(R.id.today_is_day_button);
+                        todayIsDayButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                runCamera();
+                            }
+                        });
+                    }
+                    else{
+                        dayReminderCard.setVisibility(View.VISIBLE);
+                        todayIsDayCard.setVisibility(View.GONE);
+                        numberOfDaysNotification.setText("La imagen está atrasada. Por favor, tome una foto ahora.");
+                    }
 
 
                     //SET NUMBER OF DAYS UNTIL PHYSICAL APPOINTMENT
@@ -144,10 +182,9 @@ public class MainActivity extends AppCompatActivity {
                     int nextAppointmentDate = getNextAppointmentDate();
                     int numberOfDaysUntilAppointment = nextAppointmentDate - dayOfYear;
 
-
                     if (numberOfDaysUntilAppointment == 0){
-                        String firstAppointmentString = "Your next appointment is ";
-                        String nextAppointmentString = "today.";
+                        String firstAppointmentString = "Tu proxima cita es ";
+                        String nextAppointmentString = "hoy.";
 
                         physicalAppointmentLabel.setText(firstAppointmentString + nextAppointmentString, TextView.BufferType.SPANNABLE);
                         Spannable sAppointment = (Spannable)physicalAppointmentLabel.getText();
@@ -155,12 +192,60 @@ public class MainActivity extends AppCompatActivity {
                         int endAppointment = firstAppointmentString.length() + nextAppointmentString.length();
                         sAppointment.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), startAppointment, endAppointment, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
+                    else if(numberOfDaysUntilAppointment > 0){
+                        physicalAppointmentLabel.setText("su próxima cita es en " + numberOfDaysUntilAppointment + " dias.");
+                    }
                     else{
-                        physicalAppointmentLabel.setText("Upcoming Appointment in " + numberOfDaysUntilAppointment + " days.");
+                        physicalAppointmentLabel.setText("No tienes citas próximas");
                     }
 
-
                     nameLabel.setText(totalUserName);
+
+
+                    //Next, set the previous checkinRecord
+
+
+                    //dayOfYear;
+
+
+
+                    //myCheckins
+
+                    //listOfPreviousCheckins = new ArrayList<>(Arrays.asList(false, false, false, false, false, false, false));
+                    listOfPreviousCheckins = new ArrayList<>();
+
+                    if (DayOfWeek == 7){
+                        DayOfWeek = 0;
+                    }
+
+                    //getCheckinsBefore;
+                    for (int i = dayOfYear-DayOfWeek; i < dayOfYear; i++ ){
+
+                        if (myCheckins.containsKey(String.valueOf(i))){
+                            listOfPreviousCheckins.add(true);
+                        }
+                        else{
+                            listOfPreviousCheckins.add(false);
+                        }
+                    }
+
+                    //getCheckinsAfter and During
+                    for (int i = dayOfYear; i <= (dayOfYear + (6 - DayOfWeek)); i++ ){
+                        String intKey = String.valueOf(i);
+                        if (myCheckins.containsKey(intKey)){
+                            listOfPreviousCheckins.add(true);
+                        }
+                        else{
+                            listOfPreviousCheckins.add(false);
+                        }
+                    }
+
+                    setupCheckInRecordIndicators();
+
+
+
+
+
                 }
 
                 @Override
@@ -174,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             getPermissions();
-            setupCheckInRecordIndicators();
+            //setupCheckInRecordIndicators();
 
 
             checkInButton.setOnClickListener(new View.OnClickListener() {
@@ -367,21 +452,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void runCamera(){
-
-
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        int numberOfDaysUntilCheckIn = prefs.getInt("numberOfDaysUntilCheckIn", 1);
         getPermissions();
         if (permissionsGranted() == false) {
             Toast.makeText(getApplicationContext(), "You Must Grant Permissions to use Camera", Toast.LENGTH_SHORT);
         }
-        else{
-            //Intent intent = new Intent(getApplicationContext(), PrePhotoAlignerCheckin.class);
-            //Intent intent = new Intent(getApplicationContext(), MainSequence.class);
-            //Intent intent = new Intent(getApplicationContext(), reviewInstructions.class);
-            Intent intent = new Intent(getApplicationContext(), PrePhotoAlignerCheckin.class);
+        if (numberOfDaysUntilCheckIn == 0){
+                Intent intent = new Intent(getApplicationContext(), PrePhotoAlignerCheckin.class);
 
+                startActivity(intent);
+            }
+        else{
+            Intent intent = new Intent(getApplicationContext(), TooEarlyForPictureNotification.class);
             startActivity(intent);
         }
-
     }
 
     private void runMainSequence(){

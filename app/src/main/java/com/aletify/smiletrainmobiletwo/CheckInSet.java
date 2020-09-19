@@ -6,17 +6,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CheckInSet {
-    public String date;
+    public int date;
     public boolean questionYesNo1;
     public String questionSlider1;
     public int questionNumberPicker1;
     public String questionPicker;
 
     public CheckInSet(){
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String strDate = dateFormat.format(date);
-        this.date = strDate;
-
+        Calendar calendar = Calendar.getInstance();
+        int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+        this.date = dayOfYear;
     }
 }

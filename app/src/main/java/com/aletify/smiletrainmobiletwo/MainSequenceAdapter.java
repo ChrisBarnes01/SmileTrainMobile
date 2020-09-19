@@ -16,6 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainSequenceAdapter extends RecyclerView.Adapter<MainSequenceAdapter.MainSequenceViewHolder>{
 
+    private TextView textTitle;
+    private TextView textDescription;
+    private ImageView imageMainSequence;
+    public ToggleButton toggle1;
+    public ToggleButton toggle2;
     private List<OnboardingItem> mainSequenceItems;
 
     public MainSequenceAdapter(List<OnboardingItem> mainSequenceItems) {
@@ -42,13 +47,9 @@ public class MainSequenceAdapter extends RecyclerView.Adapter<MainSequenceAdapte
         return mainSequenceItems.size();
     }
 
-    class MainSequenceViewHolder extends RecyclerView. ViewHolder{
-        private TextView textTitle;
-        private TextView textDescription;
-        private ImageView imageMainSequence;
-        private ToggleButton toggle1;
-        private ToggleButton toggle2;
+    //public ToggleButton getButton1() { return toggle1; };
 
+    class MainSequenceViewHolder extends RecyclerView. ViewHolder{
 
         MainSequenceViewHolder(@NonNull final View itemView){
             super(itemView);
@@ -57,46 +58,11 @@ public class MainSequenceAdapter extends RecyclerView.Adapter<MainSequenceAdapte
             imageMainSequence = itemView.findViewById(R.id.imageMainSequence);
             toggle1 = itemView.findViewById(R.id.simpleToggleButton1);
             toggle2 = itemView.findViewById(R.id.simpleToggleButton2);
-            toggle1.setText("No");
-            toggle1.setTextOn("No");
-            toggle1.setTextOff("No");
 
-            toggle2.setText("Yes");
-            toggle2.setTextOn("Yes");
-            toggle2.setTextOff("Yes");
+            toggle1.setVisibility(View.INVISIBLE);
+            toggle2.setVisibility(View.INVISIBLE);
 
-
-
-            toggle1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        toggle2.setChecked(false);
-                        toggle2.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
-                        toggle1.setTextColor(itemView.getContext().getResources().getColor(R.color.colorAccent));
-                    } else {
-                        toggle2.setChecked(true);
-                        toggle2.setTextColor(itemView.getContext().getResources().getColor(R.color.colorAccent));
-                        toggle1.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
-
-                    }
-                }
-            });
-            toggle2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        toggle1.setChecked(false);
-                        toggle2.setTextColor(itemView.getContext().getResources().getColor(R.color.colorAccent));
-                        toggle1.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
-                    } else {
-                        toggle1.setChecked(true);
-                        toggle2.setTextColor(itemView.getContext().getResources().getColor(R.color.colorBlack));
-                        toggle1.setTextColor(itemView.getContext().getResources().getColor(R.color.colorAccent));
-                    }
-                }
-            });
-
-
-
+            TestAlligner.setToggles(toggle1, toggle2);
         }
 
         void setOnboardingData(OnboardingItem onboardingItem){

@@ -13,7 +13,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:theme="@style/AppTheme.NoActionBar"
-            android:name=".reviewInstructions"></activity>
+            android:name=".SelectAvatar"></activity>
+        <activity
+            android:name=".TooEarlyForPictureNotification"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".reviewInstructions"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FirstPage"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -73,9 +79,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>
