@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +29,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +40,7 @@ public class LogInFinal extends AppCompatActivity {
         private MaterialButton buttonOnboardingAction;
         private ViewPager2 createAccountViewPager;
         private FirebaseAuth mAuth;
+        private TextView LinkButton;
         String globalUsername;
         String globalPassword;
 
@@ -43,7 +48,7 @@ public class LogInFinal extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_create_account);
+            setContentView(R.layout.activity_log_in_final);
 
             mAuth = FirebaseAuth.getInstance();
             layoutProgressIndicators = findViewById(R.id.layoutProgressIndicators);
@@ -61,7 +66,16 @@ public class LogInFinal extends AppCompatActivity {
             //Stop User From Swiping Forward or Back
             createAccountViewPager.setUserInputEnabled(false);
 
-            //This sets mAuth.
+            LinkButton = (TextView) findViewById(R.id.clickable_text_link_for_login);
+            LinkButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+                    startActivity(intent);
+                }
+            });
+
+
 
         }
 

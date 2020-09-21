@@ -274,6 +274,7 @@ public class TestAlligner extends AppCompatActivity {
                     if (isChecked) {
                         toggle8.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
                         Intent toPicture = new Intent(mContext.getApplicationContext(), SecondaryCamera.class);
+                        toPicture.putExtra("destination", "reviewInstructions");
                         mContext.startActivity(toPicture);
                     }
                 }

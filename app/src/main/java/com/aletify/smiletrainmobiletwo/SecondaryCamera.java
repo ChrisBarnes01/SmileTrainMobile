@@ -74,6 +74,9 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
 
     private TextView imageLabel;
 
+    Class returnToClass;
+
+
 
 
 
@@ -83,6 +86,24 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
         idealPictures = new ArrayList<>();
         imageCollection = new ArrayList<>();
         files = new ArrayList<Uri>();
+
+
+
+        Intent intent = getIntent();
+        String destination = intent.getStringExtra("destination");
+        if (destination.equals("testAligners")){
+            returnToClass = TestAlligner.class;
+        }
+        else if (destination.equals("reviewInstructions")){
+            returnToClass = reviewInstructions.class;
+        }
+        else{
+            returnToClass = MainActivity.class;
+        }
+
+
+
+
 
         //Starting Content Interface View
         //startInterface();
@@ -117,7 +138,7 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
             mCamera.startPreview();
         } catch (IOException e) {
             //Jump to Home
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), returnToClass);
             startActivity(intent);
             Toast.makeText(getApplicationContext(), "Could Not Open Camera", Toast.LENGTH_LONG);
             e.printStackTrace();
@@ -200,13 +221,13 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
         final String[] options = {"Si", "No"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Vuelve al menú principal?");
+        builder.setTitle("¿Vuelve al pantalla anterior?");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (options[which].equals("Si")) {
                     clearAll();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), returnToClass);
                     startActivity(intent);
 
                 } else if (options[which].equals("No")) {
@@ -403,7 +424,7 @@ public class SecondaryCamera extends AppCompatActivity implements SurfaceHolder.
             public void onClick(View view) {
                 //imageCollection.add(currentPicture);
                 Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), TestAlligner.class);
+                Intent intent = new Intent(getApplicationContext(), returnToClass);
                 startActivity(intent);
             }
         });

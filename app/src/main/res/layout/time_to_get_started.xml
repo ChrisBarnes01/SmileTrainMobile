@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:text="We're Done!"
+        android:text="¡Hemos terminado!"
         android:textSize="35sp"
         android:gravity="center_horizontal"
         android:textStyle="bold"
@@ -31,7 +31,7 @@
         android:textSize="22sp"
         android:layout_marginBottom="70dp"
         android:gravity="center_horizontal"
-        android:text="Upload Your Images."
+        android:text="Ahora puedes enviar las fotos a tu Doctor."
         app:layout_constraintBottom_toTopOf="@+id/startingImage"
         app:layout_constraintEnd_toEndOf="@+id/mainViewPager"
         app:layout_constraintStart_toStartOf="@+id/mainViewPager" />

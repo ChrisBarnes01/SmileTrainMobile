@@ -230,9 +230,9 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
             });
         }
         else{
-            startingTitle.setText("We're done!");
-            startingSubtitle.setText("Now, you can upload your images to you doctor via the app");
-            buttonStartAction.setText("Upload to Doctor");
+            startingTitle.setText("¡Hemos terminado!");
+            startingSubtitle.setText("Ahora puedes enviar las fotos a tu Doctor.");
+            buttonStartAction.setText("Enviar");
             buttonStartAction.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -377,6 +377,21 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         Toast.makeText(getApplicationContext(), "Images Deleted from your Machine", Toast.LENGTH_SHORT).show();
     }
 
+    private void showDone(){
+        setContentView(R.layout.time_to_get_started);
+
+        Button finishButton = findViewById(R.id.buttonStartAction);
+        finishButton.setText("Enviar");
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Images Uploaded", Toast.LENGTH_SHORT).show();
+                Intent goHome = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(goHome);
+            }
+        });
+    }
+
 
     private void startInterface(){
         setContentView(R.layout.activity_camera4);
@@ -399,7 +414,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
         });
 
 
-        btnContinue.setText("Confirm Picture");
+        btnContinue.setText("Confirmar");
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -415,7 +430,35 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
                     startCamera();
                 }
                 else{
-                    setContentView(R.layout.time_to_get_started);
+                    setContentView(R.layout.picture_full_view);
+
+
+                    buttonStartAction = findViewById(R.id.buttonStartAction);
+                    buttonStartAction.setText("siguiente");
+                    ImageView reference1 = (ImageView) findViewById(R.id.reference1);
+                    ImageView reference2 = (ImageView) findViewById(R.id.reference2);
+                    ImageView reference3 = (ImageView) findViewById(R.id.reference3);
+                    ImageView reference4 = (ImageView) findViewById(R.id.reference4);
+                    ImageView reference5 = (ImageView) findViewById(R.id.reference5);
+                    ImageView reference6 = (ImageView) findViewById(R.id.reference6);
+                    ImageView reference7 = (ImageView) findViewById(R.id.reference7);
+
+                    reference1.setImageURI(files.get(0));
+                    reference2.setImageURI(files.get(1));
+                    reference3.setImageURI(files.get(2));
+                    reference4.setImageURI(files.get(3));
+                    reference5.setImageURI(files.get(4));
+                    reference6.setImageURI(files.get(5));
+                    reference7.setImageURI(files.get(6));
+
+                    buttonStartAction.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            showDone();
+                        }
+                    });
+
+                    /*
                     Button finishButton = findViewById(R.id.buttonStartAction);
                     finishButton.setText("Submit Images!");
                     finishButton.setOnClickListener(new View.OnClickListener() {
@@ -425,7 +468,7 @@ public class CameraActivity4 extends AppCompatActivity implements SurfaceHolder.
                             Intent goHome = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(goHome);
                         }
-                    });
+                    });*/
 
                 }
 

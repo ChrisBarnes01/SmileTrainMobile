@@ -211,6 +211,7 @@
                             android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:text="Wednesday"
+                            android:textColor="@color/colorBlack"
                             android:textSize="16dp"
                             android:id="@+id/homepage_day_of_week_label"
                             android:layout_height="wrap_content" />
@@ -219,6 +220,7 @@
                             android:id="@+id/homepage_month_and_year_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/colorBlack"
                             android:textSize="16dp"
                             android:layout_gravity="center"
                             android:text="August 2020" />

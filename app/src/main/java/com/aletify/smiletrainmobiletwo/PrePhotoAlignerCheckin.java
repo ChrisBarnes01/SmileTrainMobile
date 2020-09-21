@@ -65,6 +65,7 @@ public class PrePhotoAlignerCheckin extends AppCompatActivity {
                 }
                 else{
                     Intent intent = new Intent(getApplicationContext(), SecondaryCamera.class);
+                    intent.putExtra("destination", "testAligners");
                     startActivity(intent);
                 }
 

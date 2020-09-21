@@ -38,4 +38,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/buttonOnboardingAction"/>
 
+    <TextView
+        android:id="@+id/clickable_text_link_for_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="¿No tengo una cuenta? Oprime aquí."
+        android:textSize="16dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutProgressIndicators">
+
+    </TextView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
